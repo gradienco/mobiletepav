@@ -2,4 +2,5 @@
     <string name="app_name">Tepav</string>
     <string name="date">DD Month YYYY</string>
     <string name="time">HH:mm:ss</string>
+    <string name="device_name">Device 00</string>
 </resources>
