@@ -1,11 +1,14 @@
 package id.co.gradien.tepav.adapter
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.co.gradien.tepav.R
 import id.co.gradien.tepav.data.DeviceModel
+import id.co.gradien.tepav.ui.HomeActivity
 import kotlinx.android.synthetic.main.item_device.view.*
 
 class DeviceAdapter(list: List<DeviceModel>) : RecyclerView.Adapter<DeviceAdapter.DeviceVH>() {
@@ -24,6 +27,12 @@ class DeviceAdapter(list: List<DeviceModel>) : RecyclerView.Adapter<DeviceAdapte
         val view = holder.itemView
 
         view.textDeviceName.text = device.name
+        view.layoutDevice.setOnClickListener {
+            context.startActivity(
+                Intent(context, HomeActivity::class.java)
+                    .putExtra("deviceId", device.id))
+            (context as Activity).finish()
+        }
     }
 
     override fun getItemCount(): Int = deviceList.size

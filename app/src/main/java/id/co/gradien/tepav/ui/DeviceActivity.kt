@@ -36,7 +36,8 @@ class DeviceActivity : AppCompatActivity() {
                     deviceList.clear()
                     for (data in p0.children){
                         val device = data.getValue(DeviceModel::class.java)
-                        deviceList.add(device!!)
+                        device!!.id = data.key.toString()
+                        deviceList.add(device)
                     }
                     //Log.i(TAG, deviceList.toString())
                     deviceAdapter.setData(deviceList)

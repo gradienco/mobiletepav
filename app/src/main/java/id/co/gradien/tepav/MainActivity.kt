@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
+import com.google.firebase.database.FirebaseDatabase
 import id.co.gradien.tepav.ui.HomeActivity
 
 /*
@@ -17,15 +19,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        direct(HomeActivity::class.java)
-    }
-
-    private fun direct(cls: Class<*>) {
-        val intent = Intent(this@MainActivity, cls)
+        val intent = Intent(this@MainActivity, HomeActivity::class.java)
         val handler = Handler()
         handler.postDelayed({
             startActivity(intent)
             finish()
-        }, 3000)
+        }, 2500)
     }
 }

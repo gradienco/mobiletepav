@@ -17,13 +17,16 @@ import kotlinx.android.synthetic.main.activity_home.*
 class HomeActivity : AppCompatActivity() {
 
     private val TAG = "HOME ACTIVITY"
+    private var deviceId = "device001"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        intent.getStringExtra("deviceId")?.let {
+            deviceId = it
+        }
         val database = FirebaseDatabase.getInstance().reference
-        val deviceId = "device001"
         val device = database.child("device").child(deviceId)
 
         device.addValueEventListener(object : ValueEventListener {
@@ -52,6 +55,7 @@ class HomeActivity : AppCompatActivity() {
         }
         btnDevices.setOnClickListener {
             startActivity(Intent(this@HomeActivity, DeviceActivity::class.java))
+            finish()
         }
         btnAllPacket.setOnClickListener {
             startActivity(Intent(this@HomeActivity, PacketActivity::class.java))
