@@ -35,7 +35,7 @@ class HomeActivity : AppCompatActivity() {
 
                 textTemperature.text = dataSnapshot.child("sensor").child("temperature").value.toString()
                 textHumidity.text = dataSnapshot.child("sensor").child("humidity").value.toString()
-                textUV.text = dataSnapshot.child("sensor").child("uv_index").value.toString()
+                textUV.text = dataSnapshot.child("sensor").child("uvIndex").value.toString()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -45,10 +45,10 @@ class HomeActivity : AppCompatActivity() {
         })
 
         btnLock.setOnClickListener {
-            device.child("action").child("back_door").setValue(1)
+            device.child("action").child("backDoor").setValue(1)
         }
         btnUnlock.setOnClickListener {
-            device.child("action").child("back_door").setValue(0)
+            device.child("action").child("backDoor").setValue(0)
         }
         btnDevices.setOnClickListener {
             startActivity(Intent(this@HomeActivity, DeviceActivity::class.java))

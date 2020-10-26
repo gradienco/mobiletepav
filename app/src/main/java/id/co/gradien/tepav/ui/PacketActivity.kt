@@ -30,16 +30,17 @@ class PacketActivity : AppCompatActivity() {
         recycleviewStatus.adapter = packetAdapter
         recycleviewStatus.layoutManager = layoutManager
 
-        val deviceData = FirebaseDatabase.getInstance().getReference("packet")
-        deviceData.addValueEventListener(object : ValueEventListener {
+        val packetData = FirebaseDatabase.getInstance().getReference("packet")
+        packetData.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 p0.let {
                     packetList.clear()
                     for (data in p0.children){
                         val packet = data.getValue(PacketModel::class.java)
+                        packet!!.id = data.key.toString()
                         packetList.add(packet!!)
                     }
-                    Log.i(TAG, packetList.toString())
+                    //Log.i(TAG, packetList.toString())
                     packetAdapter.setData(packetList)
                 }
             }
