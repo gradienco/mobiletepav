@@ -8,7 +8,7 @@ import id.co.gradien.tepav.R
 import id.co.gradien.tepav.data.DeviceModel
 import kotlinx.android.synthetic.main.item_device.view.*
 
-class DeviceListAdapter(list: List<DeviceModel>) : RecyclerView.Adapter<DeviceListAdapter.DeviceVH>() {
+class DeviceAdapter(list: List<DeviceModel>) : RecyclerView.Adapter<DeviceAdapter.DeviceVH>() {
 
     private lateinit var context: Context
     private var deviceList: MutableList<DeviceModel> = list as MutableList<DeviceModel>

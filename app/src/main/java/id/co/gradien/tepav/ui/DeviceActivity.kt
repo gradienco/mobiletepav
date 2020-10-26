@@ -10,22 +10,21 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import id.co.gradien.tepav.R
-import id.co.gradien.tepav.adapter.DeviceListAdapter
-import id.co.gradien.tepav.adapter.PacketListAdapter
+import id.co.gradien.tepav.adapter.DeviceAdapter
 import id.co.gradien.tepav.data.DeviceModel
 import kotlinx.android.synthetic.main.activity_device.*
 
 class DeviceActivity : AppCompatActivity() {
     val TAG = "DEVICE ACTIVITY"
     private var deviceList = mutableListOf<DeviceModel>()
-    private lateinit var deviceAdapter: DeviceListAdapter
+    private lateinit var deviceAdapter: DeviceAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_device)
 
         val layoutManager = LinearLayoutManager(this)
-        deviceAdapter = DeviceListAdapter(deviceList)
+        deviceAdapter = DeviceAdapter(deviceList)
         recycleviewDevice.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
         recycleviewDevice.adapter = deviceAdapter
         recycleviewDevice.layoutManager = layoutManager
