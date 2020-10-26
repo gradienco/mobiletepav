@@ -10,9 +10,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import id.co.gradien.tepav.R
-import id.co.gradien.tepav.adapter.DeviceAdapter
 import id.co.gradien.tepav.adapter.PacketAdapter
-import id.co.gradien.tepav.data.DeviceModel
 import id.co.gradien.tepav.data.PacketModel
 import kotlinx.android.synthetic.main.activity_packet.*
 
