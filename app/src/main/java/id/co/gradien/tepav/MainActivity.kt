@@ -7,6 +7,7 @@ import android.os.Handler
 import android.util.Log
 import com.google.firebase.database.FirebaseDatabase
 import id.co.gradien.tepav.ui.HomeActivity
+import id.co.gradien.tepav.ui.LoginActivity
 
 /*
  * Copyright 2020 Gradien.co.
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val intent = Intent(this@MainActivity, HomeActivity::class.java)
+        val intent = Intent(this@MainActivity, LoginActivity::class.java)
         val handler = Handler()
         handler.postDelayed({
             startActivity(intent)

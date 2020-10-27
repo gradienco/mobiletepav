@@ -1,8 +1,9 @@
 package id.co.gradien.tepav.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
@@ -13,6 +14,7 @@ import id.co.gradien.tepav.R
 import id.co.gradien.tepav.adapter.DeviceAdapter
 import id.co.gradien.tepav.data.DeviceModel
 import kotlinx.android.synthetic.main.activity_device.*
+
 
 class DeviceActivity : AppCompatActivity() {
     val TAG = "DEVICE ACTIVITY"
@@ -30,11 +32,11 @@ class DeviceActivity : AppCompatActivity() {
         recycleviewDevice.layoutManager = layoutManager
 
         val deviceData = FirebaseDatabase.getInstance().getReference("device")
-        deviceData.addValueEventListener(object : ValueEventListener{
+        deviceData.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 p0.let {
                     deviceList.clear()
-                    for (data in p0.children){
+                    for (data in p0.children) {
                         val device = data.getValue(DeviceModel::class.java)
                         device!!.id = data.key.toString()
                         deviceList.add(device)
@@ -50,8 +52,24 @@ class DeviceActivity : AppCompatActivity() {
 
         })
 
-        btnAddDevice.setOnClickListener {  }
+        btnAddDevice.setOnClickListener {
+            val macAddress = "30:AE:A4:07:0D:64" //This value return form QR scanner
 
+            deviceData.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.hasChild(macAddress)) {
+                        Log.i(TAG, "Device registered already!")
+                    } else {
+                        val newDevice = DeviceModel(mac = macAddress, name = "Tepav Device")
+                        deviceData.child(macAddress).setValue(newDevice)
+                    }
+                }
+
+                override fun onCancelled(p0: DatabaseError) {
+                    Log.e(TAG, "Error fetch data form database")
+                }
+            })
+        }
 
     }
 
