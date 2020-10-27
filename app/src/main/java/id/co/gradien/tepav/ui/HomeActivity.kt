@@ -11,6 +11,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.messaging.FirebaseMessaging
 import id.co.gradien.tepav.R
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -73,6 +74,6 @@ class HomeActivity : AppCompatActivity() {
         //recycleviewPacket.adapter = PacketListAdapter()
         recycleviewPacket.layoutManager = layoutManager
 
-
+        FirebaseMessaging.getInstance().subscribeToTopic("channelMain")
     }
 }
