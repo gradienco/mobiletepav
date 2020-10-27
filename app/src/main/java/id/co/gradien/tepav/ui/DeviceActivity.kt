@@ -1,4 +1,4 @@
-package id.co.gradien.tepav.ui
+ package id.co.gradien.tepav.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -32,7 +33,9 @@ class DeviceActivity : AppCompatActivity() {
         recycleviewDevice.layoutManager = layoutManager
 
         val deviceData = FirebaseDatabase.getInstance().getReference("device")
-        deviceData.addValueEventListener(object : ValueEventListener {
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        val myDevice = deviceData.orderByChild("user").equalTo(userId)
+        myDevice.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 p0.let {
                     deviceList.clear()
@@ -53,7 +56,7 @@ class DeviceActivity : AppCompatActivity() {
         })
 
         btnAddDevice.setOnClickListener {
-            val macAddress = "30:AE:A4:07:0D:64" //This value return form QR scanner
+            val macAddress = "30:AE:A4:07:0D:64" //This value should return form QR scanner
 
             deviceData.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {

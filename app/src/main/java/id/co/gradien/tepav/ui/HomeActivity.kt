@@ -60,7 +60,6 @@ class HomeActivity : AppCompatActivity() {
         }
         btnDevices.setOnClickListener {
             startActivity(Intent(this@HomeActivity, DeviceActivity::class.java))
-            finish()
         }
         btnAllPacket.setOnClickListener {
             startActivity(Intent(this@HomeActivity, PacketActivity::class.java))
