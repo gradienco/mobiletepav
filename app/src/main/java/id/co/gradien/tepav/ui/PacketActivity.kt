@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -31,7 +32,9 @@ class PacketActivity : AppCompatActivity() {
         recycleviewStatus.layoutManager = layoutManager
 
         val packetData = FirebaseDatabase.getInstance().getReference("packet")
-        packetData.addValueEventListener(object : ValueEventListener {
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        val myPacket = packetData.orderByChild("user").equalTo(userId)
+        myPacket.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 p0.let {
                     packetList.clear()

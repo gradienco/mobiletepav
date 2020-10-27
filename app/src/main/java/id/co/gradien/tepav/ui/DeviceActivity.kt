@@ -63,7 +63,7 @@ class DeviceActivity : AppCompatActivity() {
                     if (snapshot.hasChild(macAddress)) {
                         Log.i(TAG, "Device registered already!")
                     } else {
-                        val newDevice = DeviceModel(mac = macAddress, name = "Tepav Device")
+                        val newDevice = DeviceModel(mac = macAddress, name = "Tepav Device", user = userId)
                         deviceData.child(macAddress).setValue(newDevice)
                     }
                 }
