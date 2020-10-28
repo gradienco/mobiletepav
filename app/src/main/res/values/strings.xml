@@ -4,4 +4,6 @@
     <string name="time">HH:mm:ss</string>
     <string name="device_name">Device 00</string>
     <string name="default_notification_channel_id">channelMain</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</string>
+    <string name="logout">Keluar</string>
 </resources>

@@ -1,0 +1,76 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">100dp</dimen>
+    <dimen name="design_navigation_icon_size" tools:override="true">30dp</dimen>
+    <dimen name="design_navigation_icon_padding" tools:override="true">10dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="spacing_small">3dp</dimen>
+    <dimen name="spacing_xsmall">2dp</dimen>
+    <dimen name="spacing_medium">4dp</dimen>
+    <dimen name="spacing_middle">10dp</dimen>
+    <dimen name="spacing_large">16dp</dimen>
+    <dimen name="spacing_mlarge">20dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
+
+    <dimen name="news_header_details_size">220dp</dimen>
+
+    <!-- Font sizes -->
+    <dimen name="text_xsmall">10sp</dimen>
+    <dimen name="text_small_14">14sp</dimen>
+    <dimen name="text_large_">20sp</dimen>
+    <dimen name="text_xxxlarge">34sp</dimen>
+    <dimen name="text_body_1">16sp</dimen>
+    <dimen name="text_body_2">14sp</dimen>
+    <dimen name="text_caption">12sp</dimen>
+    <dimen name="text_subtitle_1">16sp</dimen>
+    <dimen name="text_subtitle_2">14sp</dimen>
+    <dimen name="text_heading_4">20sp</dimen>
+
+
+    <!-- Margins -->
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="margin_small_6">6dp</dimen>
+    <dimen name="margin_default">8dp</dimen>
+    <dimen name="margin_large__">16dp</dimen>
+    <dimen name="margin_xlarge">20dp</dimen>
+    <dimen name="margin_xlarge_">25dp</dimen>
+    <dimen name="margin_xlarge__">30dp</dimen>
+    <dimen name="margin_xxlarge__">48dp</dimen>
+    <dimen name="margin_xxxlarge">60dp</dimen>
+
+    <!-- Card View -->
+    <dimen name="corner_radius_default">4dp</dimen>
+    <dimen name="elevation_small_">3dp</dimen>
+    <dimen name="viewpager_margin_overlap_payment">-30dp</dimen>
+
+
+    //LOGO VERTICAL
+    <dimen name="logo_vertical_width">140dp</dimen>
+    <dimen name="logo_vertical_height">150dp</dimen>
+
+    //LOGO TANPA TULISAN
+    <dimen name="logo_polos_width_height">110dp</dimen>
+
+    //LOGO HORIZONTAL
+    <dimen name="logo_horizontal_width">260dp</dimen>
+    <dimen name="logo_horizontal_height">95dp</dimen>
+
+
+    //BUTTON SIZE
+    <dimen name="margin_button_horizontal">50dp</dimen>
+    <dimen name="margin_button_vertical">20dp</dimen>
+
+    //CALENDAR
+    <dimen name="calendar_empty_schedules_width">270dp</dimen>
+    <dimen name="calendar_empty_schedules_height">210dp</dimen>
+
+    //TEXT BUTTON
+    <dimen name="text_size_button">17sp</dimen>
+
+
+</resources>
