@@ -3,8 +3,8 @@ package id.co.gradien.tepav.ui
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -42,10 +42,20 @@ class HomeActivity : AppCompatActivity() {
                 //val value = dataSnapshot.value.toString()
                 //Log.d(TAG, "Value is: $value")
 
-                textTemperature.text = dataSnapshot.child("sensor").child("temperature").value.toString()
+                val temperature = "${dataSnapshot.child("sensor").child("temperature").value.toString()}°"
+                textTemperature.text = temperature
                 textHumidity.text = dataSnapshot.child("sensor").child("humidity").value.toString()
                 textUV.text = dataSnapshot.child("sensor").child("uvIndex").value.toString()
                 textMode.text = dataSnapshot.child("mode").value.toString()
+
+                val automaticMode = dataSnapshot.child("mode").value.toString()
+                if(automaticMode == "1") {
+                    textMode.isChecked = true
+//                    btnSterilize.visibility = View.GONE
+                } else {
+                    textMode.isChecked = false
+                    btnSterilize.visibility = View.VISIBLE
+                }
 
                 if(dataSnapshot.child("action").child("backDoor").value.toString() == "1") {
                     tvLockMessage.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.colorRed))
@@ -67,8 +77,6 @@ class HomeActivity : AppCompatActivity() {
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
-
-
 
         btnLock.setOnClickListener {
             device.child("action").child("backDoor").setValue(1)
@@ -98,6 +106,7 @@ class HomeActivity : AppCompatActivity() {
         }
         btnSterilize.setOnClickListener {
             device.child("action").child("manualSteril").setValue(1)
+            Toast.makeText(this@HomeActivity, "Proses sterilisasi dimulai", Toast.LENGTH_LONG).show()
         }
         btnDevices.setOnClickListener {
             startActivity(Intent(this@HomeActivity, DeviceActivity::class.java))

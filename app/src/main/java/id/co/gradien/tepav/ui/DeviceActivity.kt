@@ -26,6 +26,8 @@ class DeviceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_device)
 
+        btnCloseDevices.setOnClickListener { finish() }
+
         val layoutManager = LinearLayoutManager(this)
         deviceAdapter = DeviceAdapter(deviceList)
         recycleviewDevice.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
