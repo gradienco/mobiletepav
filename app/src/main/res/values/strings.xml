@@ -7,7 +7,7 @@
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</string>
     <string name="logout">Keluar</string>
     <string name="status">Status</string>
-    <string name="tidak_ada_paket_hari_ini">Tidak ada paket hari ini</string>
+    <string name="tidak_ada_paket_hari_ini">Tidak ada paket hari ini.</string>
     <string name="belum_ada_perangkat_yang_terhubung">Belum ada perangkat yang terhubung.</string>
     <string name="copyright">Copyright Ⓒ Gradien.co - 2020</string>
     <string name="slogan">Tempat Paket Anti-Virus</string>

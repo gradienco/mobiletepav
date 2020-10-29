@@ -2,7 +2,6 @@
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,7 +25,7 @@ class DeviceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_device)
 
-        btnCloseDevices.setOnClickListener { finish() }
+        btnCloseDevicesActivity.setOnClickListener { finish() }
 
         val layoutManager = LinearLayoutManager(this)
         deviceAdapter = DeviceAdapter(deviceList)

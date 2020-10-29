@@ -25,6 +25,8 @@ class PacketActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_packet)
 
+        btnCloseAllPacketActivity.setOnClickListener { finish() }
+
         val layoutManager = LinearLayoutManager(this)
         packetAdapter = PacketAdapter(packetList)
         recycleviewStatus.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))

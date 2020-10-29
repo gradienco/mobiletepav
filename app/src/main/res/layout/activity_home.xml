@@ -66,7 +66,8 @@
             android:maxWidth="300dp"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="Sudah cek paket kamu hari ini ?"/>
+            android:text="Sudah cek paket kamu hari ini ?"
+            android:fontFamily="@font/mulireg"/>
     </LinearLayout>
 
     <LinearLayout
@@ -540,7 +541,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -558,7 +559,8 @@
             android:layout_height="match_parent"
             android:text="@string/tidak_ada_paket_hari_ini"
             android:gravity="center"
-            android:visibility="gone"/>
+            android:fontFamily="@font/mulireg"
+            android:visibility="visible"/>
     </LinearLayout>
 
 

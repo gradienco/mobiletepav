@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         android:padding="12dp">
         <ImageView
-            android:id="@+id/btnCloseDevices"
+            android:id="@+id/btnCloseDevicesActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_close"
@@ -37,14 +37,14 @@
         android:layout_above="@id/layoutItemDevices">
 
         <LinearLayout
-            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleviewDevice"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/recycleviewDevice"
                 tools:listitem="@layout/item_device"/>
         </LinearLayout>
 
@@ -53,8 +53,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/belum_ada_perangkat_yang_terhubung"
+            android:fontFamily="@font/mulireg"
             android:gravity="center"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
     </LinearLayout>
 
