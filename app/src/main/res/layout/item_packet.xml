@@ -36,13 +36,15 @@
                 android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_pack" />
+                android:src="@drawable/ic_pack"
+                android:layout_centerVertical="true"/>
 
             <LinearLayout
                 android:layout_toEndOf="@id/ic_pack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_centerVertical="true">
                 <TextView
                     android:id="@+id/textPacketDate"
                     android:layout_width="wrap_content"
@@ -65,14 +67,27 @@
                     android:fontFamily="@font/mulireg"/>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/textPacketStatus"
+
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/status"
-                android:layout_toStartOf="@id/ic_arrow_forward"
+                android:background="@drawable/bg_button"
+                android:backgroundTint="@color/colorPrimary"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="6dp"/>
+                android:paddingVertical="2dp"
+                android:paddingHorizontal="8dp"
+                android:layout_marginVertical="4dp"
+                android:layout_marginHorizontal="4dp"
+                android:layout_toStartOf="@id/ic_arrow_forward">
+                <TextView
+                    android:id="@+id/textPacketStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/status"
+                    android:layout_marginEnd="6dp"
+                    android:textColor="@color/colorWhite"/>
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/ic_arrow_forward"

@@ -51,7 +51,7 @@ class HomeActivity : AppCompatActivity() {
                 val automaticMode = dataSnapshot.child("mode").value.toString()
                 if(automaticMode == "1") {
                     textMode.isChecked = true
-//                    btnSterilize.visibility = View.GONE
+                    //btnSterilize.visibility = View.GONE
                 } else {
                     textMode.isChecked = false
                     btnSterilize.visibility = View.VISIBLE
