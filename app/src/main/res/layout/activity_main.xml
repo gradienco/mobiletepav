@@ -8,9 +8,9 @@
     tools:context=".MainActivity">
 
     <RelativeLayout
-        android:layout_centerInParent="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp">
 
         <RelativeLayout
             android:id="@+id/splashLogo"
@@ -25,7 +25,7 @@
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="120dp"
-                android:src="@drawable/ic_device"
+                android:src="@drawable/ic_tepav_control"
                 android:tint="@color/colorWhite"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
