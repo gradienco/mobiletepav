@@ -1,5 +1,6 @@
 package id.co.gradien.tepav.ui
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,17 +20,94 @@ class StatusPacketActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_status_packet)
 
+        btnCloseDetailPacketActivity.setOnClickListener { finish() }
+
         val packetId = intent.getStringExtra("id")
         val statusData = FirebaseDatabase.getInstance().getReference("packet").child(packetId!!)
         statusData.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("SetTextI18n")
             override fun onDataChange(p0: DataSnapshot) {
                 p0.let {
                     val packet = it.getValue(PacketModel::class.java)
+
                     packet!!.status.let { that -> textStatusPacket.text = that}
-                    packet.receiveTime.let { that -> textReceiveTime.text = that}
-                    packet.cleaningTime.let { that -> textCleanTime.text = that}
-                    packet.sterilizedTime.let { that -> textSterilizedTime.text = that}
-                    //Log.i(TAG, packet.toString())
+                    if (packet.receiveTime!!.isNotEmpty()) {
+                        packet.receiveTime.let { that ->
+                            val date = that.subSequence(0,10).toString()
+                            val time = that.substring(11, that.length - 3)
+                            textReceiveTime.text = "$date, $time"
+                            textReceiveTime.setTextColor(resources.getColor(R.color.colorBlack))
+                            tvReceive.setTextColor(resources.getColor(R.color.colorBlack))
+                            timelineReceived.marker = resources.getDrawable(R.drawable.ic_marker)
+                            Log.d(TAG, "Receive Status")
+                        }
+                    }
+
+                    if (packet.cleaningTime!!.isNotEmpty()) {
+                        packet.cleaningTime.let { that ->
+                            val date = that.subSequence(0,10).toString()
+                            val time = that.substring(11, that.length - 3)
+                            textCleanTime.text = "$date, $time"
+                            timelineCleaning.marker = resources.getDrawable(R.drawable.ic_marker)
+                            textCleanTime.setTextColor(resources.getColor(R.color.colorBlack))
+                            tvCleaning.setTextColor(resources.getColor(R.color.colorBlack))
+                            Log.d(TAG, "Cleaning Status")
+                        }
+                    }
+
+                    if (packet.sterilizedTime!!.isNotEmpty()) {
+                        packet.sterilizedTime.let { that ->
+                            val date = that.subSequence(0,10).toString()
+                            val time = that.substring(11, that.length - 3)
+                            textSterilizedTime.text = "$date, $time"
+                            textSterilizedTime.setTextColor(resources.getColor(R.color.colorBlack))
+                            tvSterilized.setTextColor(resources.getColor(R.color.colorBlack))
+                            timeLineSterilized.marker = resources.getDrawable(R.drawable.ic_marker)
+                            Log.d(TAG, "Sterilized Status")
+                        }
+                    }
+
+
+//                    if (packet.cleaningTime.isNullOrEmpty() && packet.sterilizedTime.isNullOrEmpty()) {
+//                        packet.receiveTime.let { that ->
+//                            val date = that?.subSequence(0,10).toString()
+//                            val time = that?.substring(11, that.length - 3)
+//                            textReceiveTime.text = "$date, $time"
+//                            Log.d(TAG, "Receive Status")
+//                        }
+//                    } else if (packet.sterilizedTime.isNullOrEmpty()) {
+//                        packet.receiveTime.let { that ->
+//                            val date = that?.subSequence(0,10).toString()
+//                            val time = that?.substring(11, that.length - 3)
+//                            textReceiveTime.text = "$date, $time"
+//                            Log.d(TAG, "Receive Status")
+//                        }
+//                        packet.cleaningTime.let { that ->
+//                            val date = that?.subSequence(0,10).toString()
+//                            val time = that?.substring(11, that.length - 3)
+//                            textCleanTime.text = "$date, $time"
+//                            Log.d(TAG, "Cleaning Status")
+//                        }
+//                    } else {
+//                        packet.receiveTime.let { that ->
+//                            val date = that?.subSequence(0,10).toString()
+//                            val time = that?.substring(11, that.length - 3)
+//                            textReceiveTime.text = "$date, $time"
+//                            Log.d(TAG, "Receive Status")
+//                        }
+//                        packet.cleaningTime.let { that ->
+//                            val date = that?.subSequence(0,10).toString()
+//                            val time = that?.substring(11, that.length - 3)
+//                            textCleanTime.text = "$date, $time"
+//                            Log.d(TAG, "Cleaning Status")
+//                        }
+//                        packet.sterilizedTime.let { that ->
+//                            val date = that?.subSequence(0,10).toString()
+//                            val time = that?.substring(11, that.length - 3)
+//                            textSterilizedTime.text = "$date, $time"
+//                            Log.d(TAG, "Sterilized Status")
+//                        }
+//                    }
                 }
             }
 

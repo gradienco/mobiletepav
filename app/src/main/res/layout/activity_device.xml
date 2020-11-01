@@ -42,7 +42,7 @@
             android:orientation="vertical">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleviewDevice"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/item_device"/>
@@ -55,7 +55,7 @@
             android:text="@string/belum_ada_perangkat_yang_terhubung"
             android:fontFamily="@font/mulireg"
             android:gravity="center"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
 
     </LinearLayout>
 

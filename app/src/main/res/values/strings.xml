@@ -11,4 +11,7 @@
     <string name="belum_ada_perangkat_yang_terhubung">Belum ada perangkat yang terhubung.</string>
     <string name="copyright">Copyright Ⓒ Gradien.co - 2020</string>
     <string name="slogan">Tempat Paket Anti-Virus</string>
+    <string name="proses_sterilisasi_selesai">Proses sterilisasi selesai</string>
+    <string name="proses_sterilisasi_dimulai">Proses sterilisasi dimulai</string>
+    <string name="paket_diterima">Paket diterima</string>
 </resources>

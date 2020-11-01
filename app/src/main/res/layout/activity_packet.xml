@@ -40,7 +40,7 @@
             android:orientation="vertical">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleviewStatus"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/item_status"/>
@@ -53,7 +53,7 @@
             android:text="@string/tidak_ada_paket_hari_ini"
             android:fontFamily="@font/mulireg"
             android:gravity="center"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
     </LinearLayout>
 
 </RelativeLayout>

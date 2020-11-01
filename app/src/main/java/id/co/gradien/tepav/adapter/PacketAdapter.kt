@@ -28,7 +28,13 @@ class PacketAdapter(list: List<PacketModel>) : RecyclerView.Adapter<PacketAdapte
         val packet = packetList[position]
         val view = holder.itemView
 
-        view.textPacketDate.text = packet.receiveTime
+        val timeAll = packet.receiveTime
+        val date = timeAll?.subSequence(0,10).toString()
+        val time = timeAll?.substring(11, timeAll.length - 3)
+
+        view.textPacketDate.text = "Tanggal : $date"
+        view.textPacketTime.text = "Waktu : $time"
+
         view.textPacketStatus.text = packet.status
 
         view.layoutPacket.setOnClickListener {

@@ -30,10 +30,11 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:padding="8dp"
+            >
             <ImageView
                 android:id="@+id/ic_pack"
-                android:padding="8dp"
+                android:padding="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_pack"
@@ -50,8 +51,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/date"
-                    android:textAlignment="center"
-                    android:maxWidth="120dp"
                     android:textColor="@color/colorBlack"
                     android:textSize="14sp"
                     android:fontFamily="@font/mulibold"/>

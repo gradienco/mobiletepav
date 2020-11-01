@@ -303,7 +303,8 @@
             android:layout_gravity="center"
             android:id="@+id/textMode"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            />
 
     </LinearLayout>
 
@@ -542,7 +543,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -561,7 +562,7 @@
             android:text="@string/tidak_ada_paket_hari_ini"
             android:gravity="center"
             android:fontFamily="@font/mulireg"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
     </LinearLayout>
 
 

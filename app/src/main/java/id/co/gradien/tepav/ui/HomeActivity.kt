@@ -17,6 +17,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.messaging.FirebaseMessaging
 import id.co.gradien.tepav.R
+import id.co.gradien.tepav.adapter.PacketAdapter
+import id.co.gradien.tepav.data.DeviceModel
+import id.co.gradien.tepav.data.PacketModel
 import kotlinx.android.synthetic.main.activity_home.*
 
 
@@ -24,6 +27,8 @@ class HomeActivity : AppCompatActivity() {
 
     private val TAG = "HOME ACTIVITY"
     private var deviceId = "device001"
+    private var packetList = mutableListOf<PacketModel>()
+    private lateinit var packetAdapter: PacketAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +38,8 @@ class HomeActivity : AppCompatActivity() {
             deviceId = it
         }
         val database = FirebaseDatabase.getInstance().reference
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
         val device = database.child("device").child(deviceId)
-
         device.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
@@ -46,15 +51,35 @@ class HomeActivity : AppCompatActivity() {
                 textTemperature.text = temperature
                 textHumidity.text = dataSnapshot.child("sensor").child("humidity").value.toString()
                 textUV.text = dataSnapshot.child("sensor").child("uvIndex").value.toString()
-                textMode.text = dataSnapshot.child("mode").value.toString()
-
-                val automaticMode = dataSnapshot.child("mode").value.toString()
-                if(automaticMode == "1") {
-                    textMode.isChecked = true
-                    //btnSterilize.visibility = View.GONE
-                } else {
+                var automaticMode = dataSnapshot.child("mode").value.toString()
+                Log.i(TAG, "Value Mode Automatic: $automaticMode")
+                if(automaticMode == "0") {
                     textMode.isChecked = false
                     btnSterilize.visibility = View.VISIBLE
+                    textMode.setOnClickListener {
+                        device.child("mode").addListenerForSingleValueEvent(object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                device.child("mode").setValue(1)
+                            }
+                            override fun onCancelled(p0: DatabaseError) {
+                                Log.e(TAG, "Error fetch data form database")
+                            }
+                        })
+                    }
+                } else {
+                    textMode.isChecked = true
+                    btnSterilize.visibility = View.GONE
+                    textMode.setOnClickListener {
+                        device.child("mode").addListenerForSingleValueEvent(object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                device.child("mode").setValue(0)
+
+                            }
+                            override fun onCancelled(p0: DatabaseError) {
+                                Log.e(TAG, "Error fetch data form database")
+                            }
+                        })
+                    }
                 }
 
                 if(dataSnapshot.child("action").child("backDoor").value.toString() == "1") {
@@ -120,10 +145,33 @@ class HomeActivity : AppCompatActivity() {
         }
 
         val layoutManager = LinearLayoutManager(this)
-        recycleviewPacket.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
-        //recycleviewPacket.adapter = PacketListAdapter()
-        recycleviewPacket.layoutManager = layoutManager
 
-        FirebaseMessaging.getInstance().subscribeToTopic("channelMain")
+        //recycleviewPacket.adapter = PacketListAdapter()
+        packetAdapter = PacketAdapter(packetList)
+        recycleviewPacket.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
+        recycleviewPacket.adapter = packetAdapter
+        recycleviewPacket.layoutManager = layoutManager
+        val packetData = FirebaseDatabase.getInstance().getReference("packet")
+        //FirebaseMessaging.getInstance().subscribeToTopic("channelMain")
+        //val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        val myPacket = packetData.orderByChild("user").equalTo(userId)
+        myPacket.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                p0.let {
+                    packetList.clear()
+                    for (data in p0.children){
+                        val packet = data.getValue(PacketModel::class.java)
+                        packet!!.id = data.key.toString()
+                        packetList.add(packet!!)
+                    }
+                    packetAdapter.setData(packetList)
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                Log.e(TAG, "Error fetch data form database")
+            }
+
+        })
     }
 }

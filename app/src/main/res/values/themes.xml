@@ -14,4 +14,22 @@
 
         <!-- Customize your theme here. -->
     </style>
+
+
+    <!--Alert Dalog-->
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.Dialog.Alert.Title">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <style name="AppTheme.Dialog.Alert" parent="AppTheme.Dialog">
+        <item name="android:windowTitleStyle">@style/AppTheme.Dialog.Alert.Title</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
+    </style>
 </resources>

@@ -1,5 +1,9 @@
  package id.co.gradien.tepav.ui
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -13,10 +17,12 @@ import com.google.firebase.database.ValueEventListener
 import id.co.gradien.tepav.R
 import id.co.gradien.tepav.adapter.DeviceAdapter
 import id.co.gradien.tepav.data.DeviceModel
+import id.co.gradien.tepav.utils.Tools
 import kotlinx.android.synthetic.main.activity_device.*
+import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 
-class DeviceActivity : AppCompatActivity() {
+ class DeviceActivity : AppCompatActivity() {
     val TAG = "DEVICE ACTIVITY"
     private var deviceList = mutableListOf<DeviceModel>()
     private lateinit var deviceAdapter: DeviceAdapter
@@ -26,6 +32,13 @@ class DeviceActivity : AppCompatActivity() {
         setContentView(R.layout.activity_device)
 
         btnCloseDevicesActivity.setOnClickListener { finish() }
+
+        val messageScan = intent.getStringExtra("Message_Scan")
+        when (messageScan) {
+            "failed" -> Tools.showPopUpDialogWaring(this@DeviceActivity, "Gagal", "Device telah didaftarkan")
+            "success" -> Tools.showPopUpDialog(this@DeviceActivity, "Berhasil", "Device berhasil didaftarkan")
+        }
+
 
         val layoutManager = LinearLayoutManager(this)
         deviceAdapter = DeviceAdapter(deviceList)
@@ -57,25 +70,26 @@ class DeviceActivity : AppCompatActivity() {
         })
 
         btnAddDevice.setOnClickListener {
-            val macAddress = "30:AE:A4:07:0D:64" //This value should return form QR scanner
-
-            deviceData.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.hasChild(macAddress)) {
-                        Log.i(TAG, "Device registered already!")
-                    } else {
-                        val newDevice = DeviceModel(mac = macAddress, name = "Tepav Device", user = userId)
-                        deviceData.child(macAddress).setValue(newDevice)
-                    }
-                }
-
-                override fun onCancelled(p0: DatabaseError) {
-                    Log.e(TAG, "Error fetch data form database")
-                }
-            })
+            finish()
+            startActivity(Intent(this@DeviceActivity, ScanDeviceActivity::class.java))
+//            val macAddress = "30:AE:A4:07:0D:64" //This value should return form QR scanner
+//
+//            deviceData.addValueEventListener(object : ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    if (snapshot.hasChild(macAddress)) {
+//                        Log.i(TAG, "Device registered already!")
+//                    } else {
+//                        val newDevice = DeviceModel(mac = macAddress, name = "Tepav Device", user = userId)
+//                        deviceData.child(macAddress).setValue(newDevice)
+//                    }
+//                }
+//
+//                override fun onCancelled(p0: DatabaseError) {
+//                    Log.e(TAG, "Error fetch data form database")
+//                }
+//            })
         }
 
     }
-
 
 }

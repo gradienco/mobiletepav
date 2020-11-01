@@ -64,6 +64,7 @@
                     android:background="@drawable/bg_button_outline"
                     android:padding="30dp">
                     <LinearLayout
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -103,6 +104,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <com.github.vipulasri.timelineview.TimelineView
+                            android:id="@+id/timeLineSterilized"
                             android:layout_width="wrap_content"
                             android:layout_height="100dp"
                             app:markerSize="20dp"
@@ -113,24 +115,26 @@
                             app:linePadding="5dp"
                             android:layout_marginTop="8dp"
                             app:markerInCenter="false"
-                            app:marker="@drawable/ic_marker"/>
+                            app:marker="@drawable/ic_marker_passive"/>
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:paddingHorizontal="20dp">
+                            <TextView
+                                android:id="@+id/tvSterilized"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/proses_sterilisasi_selesai"
+                                android:fontFamily="@font/mulibold"
+                                android:textColor="@color/colorGrey"/>
                             <TextView
                                 android:id="@+id/textSterilizedTime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Sterilized"
-                                android:fontFamily="@font/mulibold"
-                                android:textColor="@color/black_800"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Date Time"
-                                android:textColor="@color/black_800"/>
+                                android:text="Waktu selesai"
+                                android:fontFamily="@font/mulireg"
+                                android:textColor="@color/colorGrey"/>
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
@@ -138,6 +142,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <com.github.vipulasri.timelineview.TimelineView
+                            android:id="@+id/timelineCleaning"
                             android:layout_width="wrap_content"
                             android:layout_height="100dp"
                             app:markerSize="20dp"
@@ -148,24 +153,26 @@
                             app:linePadding="5dp"
                             android:layout_marginTop="8dp"
                             app:markerInCenter="false"
-                            app:marker="@drawable/ic_marker"/>
+                            app:marker="@drawable/ic_marker_passive"/>
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:paddingHorizontal="20dp">
+                            <TextView
+                                android:id="@+id/tvCleaning"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/proses_sterilisasi_dimulai"
+                                android:fontFamily="@font/mulibold"
+                                android:textColor="@color/colorGrey"/>
                             <TextView
                                 android:id="@+id/textCleanTime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Cleaning"
-                                android:fontFamily="@font/mulibold"
-                                android:textColor="@color/black_800"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Date Time"
-                                android:textColor="@color/black_800"/>
+                                android:text="Waktu mulai"
+                                android:fontFamily="@font/mulireg"
+                                android:textColor="@color/colorGrey"/>
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
@@ -173,6 +180,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <com.github.vipulasri.timelineview.TimelineView
+                            android:id="@+id/timelineReceived"
                             android:layout_width="wrap_content"
                             android:layout_height="100dp"
                             app:markerSize="20dp"
@@ -183,24 +191,26 @@
                             app:linePadding="5dp"
                             android:layout_marginTop="8dp"
                             app:markerInCenter="false"
-                            app:marker="@drawable/ic_marker"/>
+                            app:marker="@drawable/ic_marker_passive"/>
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:paddingHorizontal="20dp">
                             <TextView
+                                android:id="@+id/tvReceive"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/paket_diterima"
+                                android:fontFamily="@font/mulibold"
+                                android:textColor="@color/colorGrey"/>
+                            <TextView
                                 android:id="@+id/textReceiveTime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Receive"
-                                android:fontFamily="@font/mulibold"
-                                android:textColor="@color/black_800"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Date Time"
-                                android:textColor="@color/black_800"/>
+                                android:text="Waktu diterima"
+                                android:fontFamily="@font/mulireg"
+                                android:textColor="@color/colorGrey"/>
                         </LinearLayout>
                     </LinearLayout>
 
