@@ -20,6 +20,7 @@
 
     <color name="colorBlack">#0F0F0F</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorWhite2">#FFFFFE</color>
     <color name="colorGreyLight">#E6E6E6</color>
     <color name="colorGrey">#C4C4C4</color>
     <color name="colorRed">#FF0000</color>
@@ -30,7 +31,8 @@
     <color name="colorPurple">#4652A4</color>
     <color name="colorDarkYellow">#EE9523</color>
     <color name="colorGreenLight">#00E833</color>
-    <color name="colorSoftGreenLight">#51E672</color>
+    <color name="colorSoftGreenLight">#7BE693</color>
+    <color name="colorSoftGreenLight2">#7FE696</color>
     <color name="colorGreen">#13A24D</color>
     <color name="colorGreen_300">#00B58B</color>
     <color name="colorGreen_200">#21CCA4</color>
@@ -38,5 +40,5 @@
     <color name="colorBluePassive">#6BB0EA</color>
     <color name="colorDarkGrey">#BBBBBB</color>
     <color name="colorDarkRed">#D50000</color>
-    <color name="colorSoftRed">#E84545</color>
+    <color name="colorSoftRed">#E86161</color>
 </resources>

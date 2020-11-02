@@ -219,6 +219,7 @@
                                         android:layout_marginBottom="5dp"
                                         android:textSize="12sp"/>
                                     <androidx.cardview.widget.CardView
+                                        android:id="@+id/btnUnlockFrontDoor"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
@@ -231,20 +232,22 @@
                                         tools:targetApi="p">
 
                                         <LinearLayout
+                                            android:id="@+id/layoutUnlockFrontDoor"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:gravity="center"
                                             android:orientation="horizontal"
                                             android:padding="10dp">
                                             <ImageView
+                                                android:id="@+id/ivUnlockFrontDoor"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:src="@drawable/ic_unlock" />
                                         </LinearLayout>
                                     </androidx.cardview.widget.CardView>
 
-
                                     <androidx.cardview.widget.CardView
+                                        android:id="@+id/btnLockFrontDoor"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
@@ -255,18 +258,21 @@
                                         android:outlineAmbientShadowColor="@color/black_800"
                                         tools:targetApi="p">
                                         <LinearLayout
+                                            android:id="@+id/layoutLockFrontDoor"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:gravity="center"
                                             android:orientation="horizontal"
                                             android:padding="10dp">
                                             <ImageView
+                                                android:id="@+id/ivLockFrontDoor"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:src="@drawable/ic_lock"/>
                                         </LinearLayout>
                                     </androidx.cardview.widget.CardView>
                                     <TextView
+                                        android:id="@+id/tvMessageFrontDoor"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
@@ -309,7 +315,7 @@
                                         android:layout_marginBottom="5dp"
                                         android:textSize="12sp"/>
                                     <androidx.cardview.widget.CardView
-                                        android:id="@+id/btnUnlock"
+                                        android:id="@+id/btnUnlockBackDoor"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
@@ -322,14 +328,14 @@
                                         tools:targetApi="p">
 
                                         <LinearLayout
-                                            android:id="@+id/layoutUnlock"
+                                            android:id="@+id/layoutUnlockBackDoor"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:gravity="center"
                                             android:orientation="horizontal"
                                             android:padding="10dp">
                                             <ImageView
-                                                android:id="@+id/ivUnlock"
+                                                android:id="@+id/ivUnlockBackDoor"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:src="@drawable/ic_unlock" />
@@ -337,7 +343,7 @@
                                     </androidx.cardview.widget.CardView>
 
                                     <androidx.cardview.widget.CardView
-                                        android:id="@+id/btnLock"
+                                        android:id="@+id/btnLockBackDoor"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
@@ -348,14 +354,14 @@
                                         android:outlineAmbientShadowColor="@color/black_800"
                                         tools:targetApi="p">
                                         <LinearLayout
-                                            android:id="@+id/layoutLock"
+                                            android:id="@+id/layoutLockBackDoor"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:gravity="center"
                                             android:orientation="horizontal"
                                             android:padding="10dp">
                                             <ImageView
-                                                android:id="@+id/ivLock"
+                                                android:id="@+id/ivLockBackDoor"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:src="@drawable/ic_lock"/>

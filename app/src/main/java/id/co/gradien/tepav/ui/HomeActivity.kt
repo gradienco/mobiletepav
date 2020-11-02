@@ -1,7 +1,6 @@
 package id.co.gradien.tepav.ui
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -18,10 +17,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.messaging.FirebaseMessaging
 import id.co.gradien.tepav.R
 import id.co.gradien.tepav.adapter.PacketAdapter
-import id.co.gradien.tepav.data.DeviceModel
 import id.co.gradien.tepav.data.PacketModel
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -54,7 +51,9 @@ class HomeActivity : AppCompatActivity() {
                 textTemperature.text = temperature
                 textHumidity.text = dataSnapshot.child("sensor").child("humidity").value.toString()
                 textUV.text = dataSnapshot.child("sensor").child("uvIndex").value.toString()
-                var automaticMode = dataSnapshot.child("mode").value.toString()
+                val automaticMode = dataSnapshot.child("mode").value.toString()
+                val frontDoorLock = dataSnapshot.child("action").child("frontDoor").value.toString() == "1"
+                val backDoorLock = dataSnapshot.child("action").child("backDoor").value.toString() == "1"
                 Log.i(TAG, "Value Mode Automatic: $automaticMode")
 
                 // Sterilize
@@ -74,32 +73,63 @@ class HomeActivity : AppCompatActivity() {
                 }
 
                 // BackDoor Lock & Unlock
-                if(dataSnapshot.child("action").child("backDoor").value.toString() == "1") {
+                if(backDoorLock) {
                     tvMessageBackDoor.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.colorRed))
-                    layoutLock.setBackgroundResource(R.color.colorRed)
-                    layoutUnlock.setBackgroundResource(R.color.colorWhite)
+                    tvMessageBackDoor.text = "Tertutup"
+                    layoutLockBackDoor.setBackgroundResource(R.color.colorRed)
+                    layoutUnlockBackDoor.setBackgroundResource(R.color.colorWhite)
                     DrawableCompat.setTint(
-                        DrawableCompat.wrap(ivLock.drawable),
+                        DrawableCompat.wrap(ivLockBackDoor.drawable),
                         ContextCompat.getColor(this@HomeActivity, R.color.colorWhite)
                     )
                     DrawableCompat.setTint(
-                            DrawableCompat.wrap(ivUnlock.drawable),
+                            DrawableCompat.wrap(ivUnlockBackDoor.drawable),
                             ContextCompat.getColor(this@HomeActivity, R.color.colorSoftGreenLight)
                     )
-
                 } else {
                     tvMessageBackDoor.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.colorGreenLight))
-                    layoutUnlock.setBackgroundResource(R.color.colorGreenLight)
-                    layoutLock.setBackgroundResource(R.color.colorWhite)
+                    tvMessageBackDoor.text = "Terbuka"
+                    layoutUnlockBackDoor.setBackgroundResource(R.color.colorGreenLight)
+                    layoutLockBackDoor.setBackgroundResource(R.color.colorWhite)
                     DrawableCompat.setTint(
-                        DrawableCompat.wrap(ivUnlock.drawable),
+                        DrawableCompat.wrap(ivUnlockBackDoor.drawable),
                         ContextCompat.getColor(this@HomeActivity, R.color.colorWhite)
                     )
                     DrawableCompat.setTint(
-                            DrawableCompat.wrap(ivLock.drawable),
+                            DrawableCompat.wrap(ivLockBackDoor.drawable),
                             ContextCompat.getColor(this@HomeActivity, R.color.colorSoftRed)
                     )
                 }
+
+                // FrontDoor Lock & Unlock
+                if(frontDoorLock) {
+                    tvMessageFrontDoor.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.colorRed))
+                    tvMessageFrontDoor.text = "Tertutup"
+                    layoutLockFrontDoor.setBackgroundResource(R.color.colorRed)
+                    DrawableCompat.setTint(
+                            DrawableCompat.wrap(ivLockFrontDoor.drawable),
+                            ContextCompat.getColor(this@HomeActivity, R.color.colorWhite2)
+                    )
+                    layoutUnlockFrontDoor.setBackgroundResource(R.color.colorWhite)
+                    DrawableCompat.setTint(
+                            DrawableCompat.wrap(ivUnlockFrontDoor.drawable),
+                            ContextCompat.getColor(this@HomeActivity, R.color.colorSoftGreenLight2)
+                    )
+                } else {
+                    tvMessageFrontDoor.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.colorGreenLight))
+                    tvMessageFrontDoor.text = "Terbuka"
+                    layoutUnlockFrontDoor.setBackgroundResource(R.color.colorGreenLight)
+                    layoutLockFrontDoor.setBackgroundResource(R.color.colorWhite)
+                    DrawableCompat.setTint(
+                            DrawableCompat.wrap(ivUnlockFrontDoor.drawable),
+                            ContextCompat.getColor(this@HomeActivity, R.color.colorWhite)
+                    )
+                    DrawableCompat.setTint(
+                            DrawableCompat.wrap(ivLockFrontDoor.drawable),
+                            ContextCompat.getColor(this@HomeActivity, R.color.colorSoftRed)
+                    )
+                }
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -132,32 +162,60 @@ class HomeActivity : AppCompatActivity() {
 
 
 
-        btnLock.setOnClickListener {
+        btnLockBackDoor.setOnClickListener {
             device.child("action").child("backDoor").setValue(1)
             Log.d(TAG, "Lock Tepav")
             tvMessageBackDoor.setTextColor(ContextCompat.getColor(this, R.color.colorRed))
             DrawableCompat.setTint(
-                DrawableCompat.wrap(ivLock.drawable),
+                DrawableCompat.wrap(ivLockBackDoor.drawable),
                 ContextCompat.getColor(this, R.color.colorRed)
             )
             DrawableCompat.setTint(
-                DrawableCompat.wrap(ivUnlock.drawable),
+                DrawableCompat.wrap(ivUnlockBackDoor.drawable),
                 ContextCompat.getColor(this, R.color.colorGrey)
             )
         }
-        btnUnlock.setOnClickListener {
+        btnUnlockBackDoor.setOnClickListener {
             device.child("action").child("backDoor").setValue(0)
             Log.d(TAG, "Unlock Tepav")
             tvMessageBackDoor.setTextColor(ContextCompat.getColor(this, R.color.colorGreenLight))
             DrawableCompat.setTint(
-                DrawableCompat.wrap(ivUnlock.drawable),
+                DrawableCompat.wrap(ivUnlockBackDoor.drawable),
                 ContextCompat.getColor(this, R.color.colorGreenLight)
             )
             DrawableCompat.setTint(
-                DrawableCompat.wrap(ivLock.drawable),
+                DrawableCompat.wrap(ivLockBackDoor.drawable),
                 ContextCompat.getColor(this, R.color.colorGrey)
             )
         }
+
+        btnLockFrontDoor.setOnClickListener {
+            device.child("action").child("frontDoor").setValue(1)
+            Log.d(TAG, "Lock Tepav")
+            tvMessageFrontDoor.setTextColor(ContextCompat.getColor(this, R.color.colorRed))
+            DrawableCompat.setTint(
+                    DrawableCompat.wrap(ivLockFrontDoor.drawable),
+                    ContextCompat.getColor(this, R.color.colorRed)
+            )
+            DrawableCompat.setTint(
+                    DrawableCompat.wrap(ivUnlockFrontDoor.drawable),
+                    ContextCompat.getColor(this, R.color.colorGrey)
+            )
+        }
+        btnUnlockFrontDoor.setOnClickListener {
+            device.child("action").child("frontDoor").setValue(0)
+            Log.d(TAG, "Unlock Tepav")
+            tvMessageFrontDoor.setTextColor(ContextCompat.getColor(this, R.color.colorGreenLight))
+            DrawableCompat.setTint(
+                    DrawableCompat.wrap(ivUnlockFrontDoor.drawable),
+                    ContextCompat.getColor(this, R.color.colorGreenLight)
+            )
+            DrawableCompat.setTint(
+                    DrawableCompat.wrap(ivLockFrontDoor.drawable),
+                    ContextCompat.getColor(this, R.color.colorGrey)
+            )
+        }
+
         btnSterilize.setOnClickListener {
             device.child("action").child("manualSteril").setValue(1)
             Toast.makeText(this@HomeActivity, "Proses sterilisasi dimulai", Toast.LENGTH_LONG).show()
