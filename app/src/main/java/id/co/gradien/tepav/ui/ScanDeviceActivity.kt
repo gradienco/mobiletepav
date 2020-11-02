@@ -74,20 +74,26 @@ class ScanDeviceActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
     override fun handleResult(rawResult: Result?) {
         scannerView.resumeCameraPreview(this)
+        if (rawResult != null) {
+            onPause()
+        }
         val qrResult = rawResult?.text
-        Log.d("MODEL ", "qrCode ${qrResult!!}")
+        //Log.d("MODEL ", "qrCode ${qrResult!!}")
 
-        deviceData.addValueEventListener(object : ValueEventListener {
+        deviceData.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d(TAG, "Child : ${snapshot.hasChild(qrResult!!)}")
                 if (snapshot.hasChild(qrResult)) {
                     Log.i(TAG, "Device registered already!")
+                    Log.d(TAG, "Child True = ${snapshot.hasChild(qrResult)}")
                     finish()
-                    startActivity(Intent(this@ScanDeviceActivity, DeviceActivity::class.java).putExtra("Message_Scan", "failed"))
+                    startActivity(Intent(this@ScanDeviceActivity, DeviceActivity::class.java).putExtra(DeviceActivity.ADD_DEVICE, "failed"))
                 } else {
                     val newDevice = DeviceModel(mac = qrResult, name = "Tepav Device", user = userId)
+                    Log.d(TAG, "Child False = ${snapshot.hasChild(qrResult)}")
                     deviceData.child(qrResult).setValue(newDevice)
                     finish()
-                    startActivity(Intent(this@ScanDeviceActivity, DeviceActivity::class.java).putExtra("Message_Scan", "success"))
+                    startActivity(Intent(this@ScanDeviceActivity, DeviceActivity::class.java).putExtra(DeviceActivity.ADD_DEVICE, "success"))
                 }
             }
 

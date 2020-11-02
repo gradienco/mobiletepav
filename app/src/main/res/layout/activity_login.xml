@@ -42,7 +42,8 @@
                 android:maxWidth="300dp"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="@string/lorem_ipsum"/>
+                android:fontFamily="@font/mulireg"
+                android:text="Dengan ini, \nPaket kamu sudah aman kok, jadi gak usah risau. Paket kamu juga sudah steril loh, jadi kamu ga perlu takut lagi dengan virus yang hanya datang untuk menyakiti.\n~Tepav app"/>
         </LinearLayout>
 
 

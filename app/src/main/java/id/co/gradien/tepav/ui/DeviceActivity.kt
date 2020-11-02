@@ -6,6 +6,9 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,18 +30,30 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
     private var deviceList = mutableListOf<DeviceModel>()
     private lateinit var deviceAdapter: DeviceAdapter
 
+     companion object {
+         const val ADD_DEVICE = "add_device"
+     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_device)
 
         btnCloseDevicesActivity.setOnClickListener { finish() }
 
-        val messageScan = intent.getStringExtra("Message_Scan")
-        when (messageScan) {
-            "failed" -> Tools.showPopUpDialogWaring(this@DeviceActivity, "Gagal", "Device telah didaftarkan")
+        val failedScan = intent.getStringExtra(ADD_DEVICE)
+        Log.d(TAG, "SCAN RESULT : $failedScan")
+        when(failedScan) {
             "success" -> Tools.showPopUpDialog(this@DeviceActivity, "Berhasil", "Device berhasil didaftarkan")
+            "failed" -> Tools.showPopUpDialogWaring(this@DeviceActivity, "Gagal", "Device telah didaftarkan")
         }
-
+//        if(failedScan == "failed") {
+//            Tools.showPopUpDialogWaring(this@DeviceActivity, "Gagal", "Device telah didaftarkan")
+//        }
+//
+//        val successScan = intent.getStringExtra("Success_scan")
+//        if (successScan == "success") {
+//            Tools.showPopUpDialog(this@DeviceActivity, "Berhasil", "Device berhasil didaftarkan")
+//        }
 
         val layoutManager = LinearLayoutManager(this)
         deviceAdapter = DeviceAdapter(deviceList)
@@ -57,9 +72,14 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
                         val device = data.getValue(DeviceModel::class.java)
                         device!!.id = data.key.toString()
                         deviceList.add(device)
+                        Log.d(TAG, "Device : $deviceList")
                     }
                     //Log.i(TAG, deviceList.toString())
                     deviceAdapter.setData(deviceList)
+                    if (deviceList.isNullOrEmpty()) {
+                        tvEmptyDevice.visibility = VISIBLE
+                        recycleviewDevice.visibility = GONE
+                    }
                 }
             }
 

@@ -3,6 +3,8 @@ package id.co.gradien.tepav.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -47,6 +49,10 @@ class PacketActivity : AppCompatActivity() {
                     }
                     //Log.i(TAG, packetList.toString())
                     packetAdapter.setData(packetList)
+                    if (packetList.isNullOrEmpty()) {
+                        tvEmptyPackAll.visibility = VISIBLE
+                        recycleviewStatus.visibility = GONE
+                    }
                 }
             }
 

@@ -1,9 +1,12 @@
 package id.co.gradien.tepav.ui
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -53,46 +56,48 @@ class HomeActivity : AppCompatActivity() {
                 textUV.text = dataSnapshot.child("sensor").child("uvIndex").value.toString()
                 var automaticMode = dataSnapshot.child("mode").value.toString()
                 Log.i(TAG, "Value Mode Automatic: $automaticMode")
-                if(automaticMode == "0") {
-                    textMode.isChecked = false
-                    btnSterilize.visibility = View.VISIBLE
-                    textMode.setOnClickListener {
-                        device.child("mode").addListenerForSingleValueEvent(object : ValueEventListener {
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                device.child("mode").setValue(1)
-                            }
-                            override fun onCancelled(p0: DatabaseError) {
-                                Log.e(TAG, "Error fetch data form database")
-                            }
-                        })
-                    }
-                } else {
-                    textMode.isChecked = true
-                    btnSterilize.visibility = View.GONE
-                    textMode.setOnClickListener {
-                        device.child("mode").addListenerForSingleValueEvent(object : ValueEventListener {
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                device.child("mode").setValue(0)
 
-                            }
-                            override fun onCancelled(p0: DatabaseError) {
-                                Log.e(TAG, "Error fetch data form database")
-                            }
-                        })
-                    }
+                // Sterilize
+                if(automaticMode == "0") {
+                    tvManual.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.colorWhite))
+                    layoutManual.setBackgroundResource(R.color.colorGreenLight)
+                    layoutOtomatis.setBackgroundResource(R.color.colorWhite)
+                    tvOtomatis.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.colorBlack))
+                    btnSterilize.visibility = View.VISIBLE
+
+                } else {
+                    tvOtomatis.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.colorWhite))
+                    layoutOtomatis.setBackgroundResource(R.color.colorGreenLight)
+                    layoutManual.setBackgroundResource(R.color.colorWhite)
+                    tvManual.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.colorBlack))
+                    btnSterilize.visibility = View.GONE
                 }
 
+                // BackDoor Lock & Unlock
                 if(dataSnapshot.child("action").child("backDoor").value.toString() == "1") {
-                    tvLockMessage.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.colorRed))
+                    tvMessageBackDoor.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.colorRed))
+                    layoutLock.setBackgroundResource(R.color.colorRed)
+                    layoutUnlock.setBackgroundResource(R.color.colorWhite)
                     DrawableCompat.setTint(
                         DrawableCompat.wrap(ivLock.drawable),
-                        ContextCompat.getColor(this@HomeActivity, R.color.colorRed)
+                        ContextCompat.getColor(this@HomeActivity, R.color.colorWhite)
                     )
+                    DrawableCompat.setTint(
+                            DrawableCompat.wrap(ivUnlock.drawable),
+                            ContextCompat.getColor(this@HomeActivity, R.color.colorSoftGreenLight)
+                    )
+
                 } else {
-                    tvLockMessage.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.colorGreenLight))
+                    tvMessageBackDoor.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.colorGreenLight))
+                    layoutUnlock.setBackgroundResource(R.color.colorGreenLight)
+                    layoutLock.setBackgroundResource(R.color.colorWhite)
                     DrawableCompat.setTint(
                         DrawableCompat.wrap(ivUnlock.drawable),
-                        ContextCompat.getColor(this@HomeActivity, R.color.colorGreenLight)
+                        ContextCompat.getColor(this@HomeActivity, R.color.colorWhite)
+                    )
+                    DrawableCompat.setTint(
+                            DrawableCompat.wrap(ivLock.drawable),
+                            ContextCompat.getColor(this@HomeActivity, R.color.colorSoftRed)
                     )
                 }
             }
@@ -103,10 +108,34 @@ class HomeActivity : AppCompatActivity() {
             }
         })
 
+        btnOtomatis.setOnClickListener {
+            device.child("mode").addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    device.child("mode").setValue(1)
+                }
+                override fun onCancelled(p0: DatabaseError) {
+                    Log.e(TAG, "Error fetch data form database")
+                }
+            })
+        }
+
+        btnManual.setOnClickListener {
+            device.child("mode").addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    device.child("mode").setValue(0)
+                }
+                override fun onCancelled(p0: DatabaseError) {
+                    Log.e(TAG, "Error fetch data form database")
+                }
+            })
+        }
+
+
+
         btnLock.setOnClickListener {
             device.child("action").child("backDoor").setValue(1)
             Log.d(TAG, "Lock Tepav")
-            tvLockMessage.setTextColor(ContextCompat.getColor(this, R.color.colorRed))
+            tvMessageBackDoor.setTextColor(ContextCompat.getColor(this, R.color.colorRed))
             DrawableCompat.setTint(
                 DrawableCompat.wrap(ivLock.drawable),
                 ContextCompat.getColor(this, R.color.colorRed)
@@ -119,7 +148,7 @@ class HomeActivity : AppCompatActivity() {
         btnUnlock.setOnClickListener {
             device.child("action").child("backDoor").setValue(0)
             Log.d(TAG, "Unlock Tepav")
-            tvLockMessage.setTextColor(ContextCompat.getColor(this, R.color.colorGreenLight))
+            tvMessageBackDoor.setTextColor(ContextCompat.getColor(this, R.color.colorGreenLight))
             DrawableCompat.setTint(
                 DrawableCompat.wrap(ivUnlock.drawable),
                 ContextCompat.getColor(this, R.color.colorGreenLight)
@@ -145,7 +174,6 @@ class HomeActivity : AppCompatActivity() {
         }
 
         val layoutManager = LinearLayoutManager(this)
-
         //recycleviewPacket.adapter = PacketListAdapter()
         packetAdapter = PacketAdapter(packetList)
         recycleviewPacket.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
@@ -162,9 +190,18 @@ class HomeActivity : AppCompatActivity() {
                     for (data in p0.children){
                         val packet = data.getValue(PacketModel::class.java)
                         packet!!.id = data.key.toString()
-                        packetList.add(packet!!)
+                        packetList.add(packet)
                     }
-                    packetAdapter.setData(packetList)
+                    if (packetList.size >= 2) {
+                        val packetListLimit =  packetList.subList(0,2)
+                        packetAdapter.setData(packetListLimit)
+                    } else if (packetList.size == 1) {
+                        val packetListLimit =  packetList.subList(0,1)
+                        packetAdapter.setData(packetListLimit)
+                    } else {
+                        tvEmptyPack.visibility = VISIBLE
+                        recycleviewPacket.visibility = GONE
+                    }
                 }
             }
 
