@@ -2,14 +2,22 @@ package id.co.gradien.tepav.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import id.co.gradien.tepav.R
 import id.co.gradien.tepav.data.PacketModel
 import id.co.gradien.tepav.ui.HomeActivity
 import id.co.gradien.tepav.ui.StatusPacketActivity
 import kotlinx.android.synthetic.main.item_packet.view.*
+import java.time.Instant
+import java.time.ZoneId
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class PacketAdapter(list: List<PacketModel>) : RecyclerView.Adapter<PacketAdapter.PacketVH>() {
 
@@ -24,13 +32,18 @@ class PacketAdapter(list: List<PacketModel>) : RecyclerView.Adapter<PacketAdapte
 
     override fun getItemCount(): Int = packetList.size
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: PacketVH, position: Int) {
         val packet = packetList[position]
         val view = holder.itemView
 
-        val timeAll = packet.receiveTime
-        val date = timeAll?.subSequence(0,10).toString()
-        val time = timeAll?.substring(11, timeAll.length - 3)
+        val receiveTime = parseTimeINSTANT(packet.receiveTime)
+        Log.d("ADAPTER", "Parse Date : ${packet.receiveTime}")
+        Log.d("ADAPTER", "Convert Date : $receiveTime")
+
+
+        val date = receiveTime?.subSequence(0,10).toString()
+        val time = receiveTime?.substring(12, receiveTime.length)
 
         view.textPacketDate.text = "Tanggal : $date"
         view.textPacketTime.text = "Waktu : $time"
@@ -42,6 +55,16 @@ class PacketAdapter(list: List<PacketModel>) : RecyclerView.Adapter<PacketAdapte
                     Intent(context, StatusPacketActivity::class.java)
                     .putExtra("id", packet.id))
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun parseTimeINSTANT(time: String?): String? {
+        val f: DateTimeFormatter = DateTimeFormatter.ISO_INSTANT.withZone(ZoneId.from(ZoneOffset.UTC))
+        val parseDate = Instant.from(f.parse(time))
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy, HH:mm")
+                .withLocale(Locale.forLanguageTag("in_ID"))
+                .withZone(ZoneId.of("Asia/Jakarta"))
+        return formatter.format(parseDate)// could be written f.parse(time, Instant::from);
     }
 
     internal fun setData(list: MutableList<PacketModel>){

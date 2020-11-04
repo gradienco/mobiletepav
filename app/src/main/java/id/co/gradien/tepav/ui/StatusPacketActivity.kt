@@ -1,10 +1,12 @@
 package id.co.gradien.tepav.ui
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -12,6 +14,12 @@ import com.google.firebase.database.ValueEventListener
 import id.co.gradien.tepav.R
 import id.co.gradien.tepav.data.PacketModel
 import kotlinx.android.synthetic.main.activity_status_packet.*
+import java.time.Instant
+import java.time.ZoneId
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.*
 
 class StatusPacketActivity : AppCompatActivity() {
 
@@ -30,17 +38,20 @@ class StatusPacketActivity : AppCompatActivity() {
         val packetId = intent.getStringExtra("id")
         val statusData = FirebaseDatabase.getInstance().getReference("packet").child(packetId!!)
         statusData.addValueEventListener(object : ValueEventListener {
+            @RequiresApi(Build.VERSION_CODES.O)
             @SuppressLint("SetTextI18n")
             override fun onDataChange(p0: DataSnapshot) {
                 p0.let {
                     val packet = it.getValue(PacketModel::class.java)
                     Log.d(TAG, "Data Packet: $packet")
+                    val receiveTime = parseTimeINSTANT(packet?.receiveTime)
+                    val cleaningTime = parseTimeINSTANT(packet?.cleaningTime)
+                    val sterilizedTime = parseTimeINSTANT(packet?.sterilizedTime)
+                    Log.d(TAG, "Convert Time = Receive : $receiveTime, Cleaning : $cleaningTime, Sterilized : $sterilizedTime")
 
-                    fun setReceivedUI(){
-                        packet?.receiveTime.let { that ->
-                            val date = that?.subSequence(0,10).toString()
-                            val time = that?.substring(11, that.length - 3)
-                            textReceiveTime.text = "$date, $time"
+                    fun setReceivedUI() {
+                        packet?.receiveTime.let {
+                            textReceiveTime.text = "$receiveTime"
                             textReceiveTime.setTextColor(resources.getColor(R.color.colorBlack))
                             tvReceive.setTextColor(resources.getColor(R.color.colorBlack))
                             timelineReceived.setImageResource(R.drawable.ic_marker)
@@ -48,11 +59,9 @@ class StatusPacketActivity : AppCompatActivity() {
                         }
                     }
 
-                    fun setCleaningUI(){
-                        packet?.cleaningTime.let { that ->
-                            val date = that?.subSequence(0,10).toString()
-                            val time = that?.substring(11, that.length - 3)
-                            textCleanTime.text = "$date, $time"
+                    fun setCleaningUI() {
+                        packet?.cleaningTime.let {
+                            textCleanTime.text = cleaningTime
                             textCleanTime.setTextColor(resources.getColor(R.color.colorBlack))
                             tvCleaning.setTextColor(resources.getColor(R.color.colorBlack))
                             timelineCleaning.setImageResource(R.drawable.ic_marker)
@@ -60,11 +69,9 @@ class StatusPacketActivity : AppCompatActivity() {
                         }
                     }
 
-                    fun setSterilizedUI(){
-                        packet?.sterilizedTime.let { that ->
-                            val date = that?.subSequence(0,10).toString()
-                            val time = that?.substring(11, that.length - 3)
-                            textSterilizedTime.text = "$date, $time"
+                    fun setSterilizedUI() {
+                        packet?.sterilizedTime.let {
+                            textSterilizedTime.text = sterilizedTime
                             textSterilizedTime.setTextColor(resources.getColor(R.color.colorBlack))
                             tvSterilized.setTextColor(resources.getColor(R.color.colorBlack))
                             timeLineSterilized.setImageResource(R.drawable.ic_marker)
@@ -98,5 +105,15 @@ class StatusPacketActivity : AppCompatActivity() {
             getData()
             Handler().postDelayed({ srStatusPacket.isRefreshing = false }, 500)
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun parseTimeINSTANT(time: String?): String? {
+        val f: DateTimeFormatter = DateTimeFormatter.ISO_INSTANT.withZone(ZoneId.from(ZoneOffset.UTC))
+        val parseDate = Instant.from(f.parse(time))
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy, HH:mm")
+                .withLocale(Locale.forLanguageTag("in_ID"))
+                .withZone(ZoneId.of("Asia/Jakarta"))
+        return formatter.format(parseDate)// could be written f.parse(time, Instant::from);
     }
 }
