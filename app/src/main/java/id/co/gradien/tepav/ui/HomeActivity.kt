@@ -231,6 +231,10 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
         }
 
+        bluetooth.setOnClickListener {
+            startActivity(Intent(this@HomeActivity, BluetoothActivity::class.java))
+        }
+
         val layoutManager = LinearLayoutManager(this)
         //recycleviewPacket.adapter = PacketListAdapter()
         packetAdapter = PacketAdapter(packetList)
