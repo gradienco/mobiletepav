@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.activity_home.*
 class HomeActivity : AppCompatActivity() {
 
     private val TAG = "HOME ACTIVITY"
-    private var deviceId = "device001"
+    private var deviceId = "device001" //think how to handle this
     private var packetList = mutableListOf<PacketModel>()
     private lateinit var packetAdapter: PacketAdapter
 
@@ -231,8 +231,8 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
         }
 
-        bluetooth.setOnClickListener {
-            startActivity(Intent(this@HomeActivity, BluetoothActivity::class.java))
+        setting.setOnClickListener {
+            startActivity(Intent(this@HomeActivity, SettingActivity::class.java).putExtra("deviceId", deviceId))
         }
 
         val layoutManager = LinearLayoutManager(this)

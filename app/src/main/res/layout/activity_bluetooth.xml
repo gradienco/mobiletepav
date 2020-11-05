@@ -12,12 +12,6 @@
         tools:ignore="MissingConstraints"
         android:orientation="vertical">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Scan"
-            android:id="@+id/btnScanBT"/>
-
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
