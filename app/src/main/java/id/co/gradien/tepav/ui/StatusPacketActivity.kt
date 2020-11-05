@@ -44,13 +44,10 @@ class StatusPacketActivity : AppCompatActivity() {
                 p0.let {
                     val packet = it.getValue(PacketModel::class.java)
                     Log.d(TAG, "Data Packet: $packet")
-                    val receiveTime = parseTimeINSTANT(packet?.receiveTime)
-                    val cleaningTime = parseTimeINSTANT(packet?.cleaningTime)
-                    val sterilizedTime = parseTimeINSTANT(packet?.sterilizedTime)
-                    Log.d(TAG, "Convert Time = Receive : $receiveTime, Cleaning : $cleaningTime, Sterilized : $sterilizedTime")
 
                     fun setReceivedUI() {
                         packet?.receiveTime.let {
+                            val receiveTime = parseTimeINSTANT(packet?.receiveTime)
                             textReceiveTime.text = "$receiveTime"
                             textReceiveTime.setTextColor(resources.getColor(R.color.colorBlack))
                             tvReceive.setTextColor(resources.getColor(R.color.colorBlack))
@@ -61,6 +58,7 @@ class StatusPacketActivity : AppCompatActivity() {
 
                     fun setCleaningUI() {
                         packet?.cleaningTime.let {
+                            val cleaningTime = parseTimeINSTANT(packet?.cleaningTime)
                             textCleanTime.text = cleaningTime
                             textCleanTime.setTextColor(resources.getColor(R.color.colorBlack))
                             tvCleaning.setTextColor(resources.getColor(R.color.colorBlack))
@@ -71,6 +69,7 @@ class StatusPacketActivity : AppCompatActivity() {
 
                     fun setSterilizedUI() {
                         packet?.sterilizedTime.let {
+                            val sterilizedTime = parseTimeINSTANT(packet?.sterilizedTime)
                             textSterilizedTime.text = sterilizedTime
                             textSterilizedTime.setTextColor(resources.getColor(R.color.colorBlack))
                             tvSterilized.setTextColor(resources.getColor(R.color.colorBlack))
@@ -89,6 +88,8 @@ class StatusPacketActivity : AppCompatActivity() {
                         setCleaningUI()
                         setSterilizedUI()
                     }
+
+//                    Log.d(TAG, "Convert Time = Receive : $receiveTime, Cleaning : $cleaningTime, Sterilized : $sterilizedTime")
 
                 }
             }
