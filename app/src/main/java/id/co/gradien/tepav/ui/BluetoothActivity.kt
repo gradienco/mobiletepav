@@ -21,7 +21,6 @@ class BluetoothActivity : AppCompatActivity() {
     private lateinit var bluetoothAdapter: BluetoothAdapter
     private lateinit var pairedDevices: Set<BluetoothDevice>
     private val REQUEST_ENABLE_BLUETOOTH = 1
-    private val EXTRA_ADDRESS = "DEVICE ADDRESS"
     private val TAG = "BLUETOOTH_ACTIVITY"
 
 
@@ -33,6 +32,7 @@ class BluetoothActivity : AppCompatActivity() {
         if (!bluetoothAdapter.isEnabled) {
             val enableBluetoothIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
             startActivityForResult(enableBluetoothIntent, REQUEST_ENABLE_BLUETOOTH)
+            finish()
         }
 
         val filter = IntentFilter()
@@ -62,8 +62,8 @@ class BluetoothActivity : AppCompatActivity() {
         listviewBT.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             val device: BluetoothDevice = listDevice[position]
             val address: String = device.address
-            val intent = Intent(this, HomeActivity::class.java)
-            intent.putExtra(EXTRA_ADDRESS, address)
+            val intent = Intent(this, SettingActivity::class.java)
+            intent.putExtra("address", address)
             startActivity(intent)
         }
 
