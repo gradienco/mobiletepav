@@ -65,6 +65,7 @@ class BluetoothActivity : AppCompatActivity() {
             val intent = Intent(this, SettingActivity::class.java)
             intent.putExtra("address", address)
             startActivity(intent)
+            finish()
         }
 
 

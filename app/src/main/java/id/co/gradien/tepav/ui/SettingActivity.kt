@@ -9,7 +9,6 @@ import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
-import android.view.View.inflate
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +20,6 @@ import id.co.gradien.tepav.R
 import kotlinx.android.synthetic.main.activity_setting.*
 import java.io.IOException
 import java.util.*
-import java.util.zip.Inflater
 
 
 class SettingActivity : AppCompatActivity() {
@@ -75,6 +73,7 @@ class SettingActivity : AppCompatActivity() {
 
         btnConnectBT.setOnClickListener {
             startActivity(Intent(this@SettingActivity, BluetoothActivity::class.java))
+            finish()
         }
         btnDisconnectBT.setOnClickListener {
             if (bluetoothSocket != null) {
@@ -93,7 +92,7 @@ class SettingActivity : AppCompatActivity() {
             val ssid = inputSSID.text
             val password = inputPassword.text
             val duration = inputDuration.text
-            sendCommand("$ssid:$password:$duration")
+            sendCommand("$ssid:$password;")
         }
     }
 
@@ -102,6 +101,7 @@ class SettingActivity : AppCompatActivity() {
             try {
                 bluetoothSocket!!.outputStream.write(input.toByteArray())
                 Toast.makeText(this, "Tersimpan", Toast.LENGTH_SHORT).show()
+                finish()
             } catch (e: IOException) {
                 e.printStackTrace()
             }
