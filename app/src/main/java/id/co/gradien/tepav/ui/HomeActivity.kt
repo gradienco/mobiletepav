@@ -47,11 +47,12 @@ class HomeActivity : AppCompatActivity() {
                 //val value = dataSnapshot.value.toString()
                 //Log.d(TAG, "Value is: $value")
 
+                textNameDevice.text = dataSnapshot.child("name").value.toString()
                 val temperature = "${dataSnapshot.child("sensor").child("temperature").value.toString()}°"
                 textTemperature.text = temperature
                 textHumidity.text = dataSnapshot.child("sensor").child("humidity").value.toString()
                 textUV.text = dataSnapshot.child("sensor").child("uvIndex").value.toString()
-                val automaticMode = dataSnapshot.child("mode").value.toString()
+                val automaticMode = dataSnapshot.child("auto").value.toString()
                 val frontDoorLock = dataSnapshot.child("action").child("frontDoor").value.toString() == "1"
                 val backDoorLock = dataSnapshot.child("action").child("backDoor").value.toString() == "1"
                 Log.i(TAG, "Value Mode Automatic: $automaticMode")
@@ -139,9 +140,9 @@ class HomeActivity : AppCompatActivity() {
         })
 
         btnOtomatis.setOnClickListener {
-            device.child("mode").addListenerForSingleValueEvent(object : ValueEventListener {
+            device.child("auto").addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    device.child("mode").setValue(1)
+                    device.child("auto").setValue(1)
                 }
                 override fun onCancelled(p0: DatabaseError) {
                     Log.e(TAG, "Error fetch data form database")
@@ -150,9 +151,9 @@ class HomeActivity : AppCompatActivity() {
         }
 
         btnManual.setOnClickListener {
-            device.child("mode").addListenerForSingleValueEvent(object : ValueEventListener {
+            device.child("auto").addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    device.child("mode").setValue(0)
+                    device.child("auto").setValue(0)
                 }
                 override fun onCancelled(p0: DatabaseError) {
                     Log.e(TAG, "Error fetch data form database")
@@ -229,6 +230,9 @@ class HomeActivity : AppCompatActivity() {
         btnLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
+        }
+        btnSetting.setOnClickListener {
+            startActivity(Intent(this@HomeActivity, SettingActivity::class.java).putExtra("deviceId", deviceId))
         }
 
         val layoutManager = LinearLayoutManager(this)

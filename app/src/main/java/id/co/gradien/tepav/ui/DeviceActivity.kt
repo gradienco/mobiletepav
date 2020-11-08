@@ -92,22 +92,6 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
         btnAddDevice.setOnClickListener {
             finish()
             startActivity(Intent(this@DeviceActivity, ScanDeviceActivity::class.java))
-//            val macAddress = "30:AE:A4:07:0D:64" //This value should return form QR scanner
-//
-//            deviceData.addValueEventListener(object : ValueEventListener {
-//                override fun onDataChange(snapshot: DataSnapshot) {
-//                    if (snapshot.hasChild(macAddress)) {
-//                        Log.i(TAG, "Device registered already!")
-//                    } else {
-//                        val newDevice = DeviceModel(mac = macAddress, name = "Tepav Device", user = userId)
-//                        deviceData.child(macAddress).setValue(newDevice)
-//                    }
-//                }
-//
-//                override fun onCancelled(p0: DatabaseError) {
-//                    Log.e(TAG, "Error fetch data form database")
-//                }
-//            })
         }
 
     }
