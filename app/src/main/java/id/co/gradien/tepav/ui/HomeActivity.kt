@@ -227,10 +227,6 @@ class HomeActivity : AppCompatActivity() {
         btnAllPacket.setOnClickListener {
             startActivity(Intent(this@HomeActivity, PacketActivity::class.java))
         }
-        btnLogout.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
-        }
         btnSetting.setOnClickListener {
             startActivity(Intent(this@HomeActivity, SettingActivity::class.java).putExtra("deviceId", deviceId))
         }

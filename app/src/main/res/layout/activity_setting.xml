@@ -1,65 +1,293 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.SettingActivity">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/tbSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:layout_margin="15dp">
+        <ImageView
+            android:id="@+id/btnCloseSettingActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_backward"
+            android:tint="@color/colorBlack"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pengaturan"
+            android:fontFamily="@font/mulibold"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <GridLayout
+        android:id="@+id/gridSetting"
+        android:layout_below="@id/tbSetting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints">
+        android:layout_gravity="center"
+        android:columnCount="2"
+        android:rowCount="1">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Wifi Status"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <androidx.cardview.widget.CardView
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="SSID: "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textSSID"/>
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="15dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp"
+                android:outlineSpotShadowColor="@color/colorPrimaryDark"
+                android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+                tools:targetApi="p">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="15dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_wifi"
+                            android:tint="@color/colorPrimary"/>
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/wifi_status"
+                            android:textAlignment="center"
+                            android:layout_marginStart="12dp"
+                            style="@style/textDefault"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SSID: "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textSSID"
+                            style="@style/textBold"
+                            android:text="@string/wifi_name"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
+
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Last Connect: "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textLastConn"/>
-        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sterilize Duration (minutes)"
-            android:layout_marginTop="@dimen/spacing_large"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="30"
-            android:id="@+id/inputDuration"/>
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save"
-            android:id="@+id/btnSaveSetting"/>
-    </LinearLayout>
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <androidx.cardview.widget.CardView
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="15dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp"
+                android:outlineSpotShadowColor="@color/colorDarkYellow"
+                android:outlineAmbientShadowColor="@color/colorDarkYellow"
+                tools:targetApi="p">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="15dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_recent"/>
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/last_connect"
+                            android:textAlignment="center"
+                            android:layout_marginStart="12dp"
+                            style="@style/textDefault"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textLastConn"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/time_last"
+                        style="@style/textBold"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </GridLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_below="@id/gridSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="15dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="12dp"
+        android:outlineSpotShadowColor="@color/colorGreenLight"
+        android:outlineAmbientShadowColor="@color/colorGreen"
+        tools:targetApi="p">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_time_sand"/>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sterilize_duration_minutes"
+                        android:textAlignment="center"
+                        android:layout_marginStart="12dp"
+                        style="@style/textDefault"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal">
+                    <LinearLayout
+                        android:id="@+id/btnReduceDuration"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_button"
+                        android:backgroundTint="@color/colorRed">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_remove"
+                            android:tint="@color/white"
+                            android:padding="5dp"/>
+                    </LinearLayout>
+
+                    <EditText
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="30"
+                        android:textAlignment="center"
+                        android:id="@+id/inputDuration"/>
+
+                    <LinearLayout
+                        android:id="@+id/btnAddDuration"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_button"
+                        android:backgroundTint="@color/colorGreenLight">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_add"
+                            android:tint="@color/white"
+                            android:padding="5dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <Button
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save"
+                    android:textColor="@color/white"
+                    android:id="@+id/btnSaveSetting"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnLogout"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        android:outlineSpotShadowColor="@color/colorDarkRed"
+        android:outlineAmbientShadowColor="@color/colorDarkRed"
+        tools:targetApi="p">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="20dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_logout"
+                android:tint="@color/colorRed"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/logout"
+                android:textColor="@color/colorDarkRed"
+                android:paddingStart="5dp"
+                style="@style/textDefault"/>
+        </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

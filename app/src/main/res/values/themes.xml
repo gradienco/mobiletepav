@@ -32,4 +32,15 @@
         <item name="android:windowTitleStyle">@style/AppTheme.Dialog.Alert.Title</item>
         <item name="android:textColorPrimary">@android:color/black</item>
     </style>
+
+
+    <style name="textDefault">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="fontFamily">@font/mulireg</item>
+    </style>
+
+    <style name="textBold">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="fontFamily">@font/mulibold</item>
+    </style>
 </resources>

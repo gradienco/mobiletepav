@@ -14,4 +14,11 @@
     <string name="proses_sterilisasi_selesai">Proses sterilisasi selesai</string>
     <string name="proses_sterilisasi_dimulai">Proses sterilisasi dimulai</string>
     <string name="paket_diterima">Paket diterima</string>
+    <string name="sterilize_duration_minutes">Sterilize Duration (minutes)</string>
+    <string name="save">Save</string>
+    <string name="time_last">Time Last</string>
+    <string name="last_connect">Last Connect</string>
+    <string name="wifi_name">WIFI NAME</string>
+    <string name="wifi_status">Wifi status</string>
+    <string name="pengaturan">Pengaturan</string>
 </resources>
