@@ -1,5 +1,6 @@
 package id.co.gradien.tepav.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,7 +12,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import id.co.gradien.tepav.R
+import id.co.gradien.tepav.utils.Tools.getDateString
 import kotlinx.android.synthetic.main.activity_setting.*
+import org.jetbrains.annotations.TestOnly
+import java.text.SimpleDateFormat
 
 class SettingActivity : AppCompatActivity() {
 
@@ -19,6 +23,8 @@ class SettingActivity : AppCompatActivity() {
     private lateinit var deviceId: String
     private lateinit var duration: String
     private var changeDuration = 0
+
+    @SuppressLint("SimpleDateFormat")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +42,11 @@ class SettingActivity : AppCompatActivity() {
         device.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 textSSID.text = dataSnapshot.child("wifi").child("ssid").value.toString()
-                textLastConn.text = dataSnapshot.child("wifi").child("lastConnect").value.toString()
+                val lastConnect = dataSnapshot.child("wifi").child("lastConnect").value.toString()
+                textLastConn.text = "${getDateString(lastConnect.toLong())}WIB"
+
+
+
                 duration = dataSnapshot.child("duration").value.toString()
                 inputDuration.setText(duration)
             }
@@ -78,4 +88,5 @@ class SettingActivity : AppCompatActivity() {
             })
         }
     }
+
 }

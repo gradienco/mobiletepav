@@ -30,7 +30,7 @@
     </RelativeLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/srStatusPacket"
+        android:id="@+id/srDetailPacket"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tbTimeLine">
@@ -204,5 +204,12 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/pbDetailPacket"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 
 </RelativeLayout>

@@ -12,6 +12,7 @@ import id.co.gradien.tepav.R
 import id.co.gradien.tepav.data.PacketModel
 import id.co.gradien.tepav.ui.HomeActivity
 import id.co.gradien.tepav.ui.StatusPacketActivity
+import id.co.gradien.tepav.utils.Tools.parseTimeINSTANT
 import kotlinx.android.synthetic.main.item_packet.view.*
 import java.time.Instant
 import java.time.ZoneId
@@ -55,16 +56,6 @@ class PacketAdapter(list: List<PacketModel>) : RecyclerView.Adapter<PacketAdapte
                     Intent(context, StatusPacketActivity::class.java)
                     .putExtra("id", packet.id))
         }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun parseTimeINSTANT(time: String?): String? {
-        val f: DateTimeFormatter = DateTimeFormatter.ISO_INSTANT.withZone(ZoneId.from(ZoneOffset.UTC))
-        val parseDate = Instant.from(f.parse(time))
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy, HH:mm")
-                .withLocale(Locale.forLanguageTag("in_ID"))
-                .withZone(ZoneId.of("Asia/Jakarta"))
-        return formatter.format(parseDate)// could be written f.parse(time, Instant::from);
     }
 
     internal fun setData(list: MutableList<PacketModel>){

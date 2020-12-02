@@ -2,10 +2,10 @@ package id.co.gradien.tepav.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -30,9 +30,14 @@ class HomeActivity : AppCompatActivity() {
     private var packetList = mutableListOf<PacketModel>()
     private lateinit var packetAdapter: PacketAdapter
 
+    private var countDownTimer: CountDownTimer? = null
+    private var timeLeftMillis: Long = 120000
+    private var timerRunning = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        contentHome.visibility = INVISIBLE
 
         intent.getStringExtra("deviceId")?.let {
             deviceId = it
@@ -42,6 +47,8 @@ class HomeActivity : AppCompatActivity() {
         val device = database.child("device").child(deviceId)
         device.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                pbHome.visibility = GONE
+                contentHome.visibility = VISIBLE
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 //val value = dataSnapshot.value.toString()
@@ -161,8 +168,6 @@ class HomeActivity : AppCompatActivity() {
             })
         }
 
-
-
         btnLockBackDoor.setOnClickListener {
             device.child("action").child("backDoor").setValue(1)
             Log.d(TAG, "Lock Tepav")
@@ -220,6 +225,19 @@ class HomeActivity : AppCompatActivity() {
         btnSterilize.setOnClickListener {
             device.child("action").child("manualSteril").setValue(1)
             Toast.makeText(this@HomeActivity, "Proses sterilisasi dimulai", Toast.LENGTH_LONG).show()
+            device.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val sterilizeDuration = dataSnapshot.child("duration").value.toString()
+                    timeLeftMillis = sterilizeDuration.toLong() * 60000
+                    startTimer()
+                }
+
+                override fun onCancelled(p0: DatabaseError) {
+                    Log.e(TAG, "Error fetch data form database")
+                }
+
+            })
+
         }
         btnDevices.setOnClickListener {
             startActivity(Intent(this@HomeActivity, DeviceActivity::class.java))
@@ -232,14 +250,11 @@ class HomeActivity : AppCompatActivity() {
         }
 
         val layoutManager = LinearLayoutManager(this)
-        //recycleviewPacket.adapter = PacketListAdapter()
         packetAdapter = PacketAdapter(packetList)
         recycleviewPacket.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
         recycleviewPacket.adapter = packetAdapter
         recycleviewPacket.layoutManager = layoutManager
         val packetData = FirebaseDatabase.getInstance().getReference("packet")
-        //FirebaseMessaging.getInstance().subscribeToTopic("channelMain")
-        //val userId = FirebaseAuth.getInstance().currentUser!!.uid
         val myPacket = packetData.orderByChild("user").equalTo(userId)
         myPacket.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
@@ -268,5 +283,58 @@ class HomeActivity : AppCompatActivity() {
             }
 
         })
+
+
+        device.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val timerSterilize = dataSnapshot.child("timerDuration").value.toString()
+                Log.d(TAG, "Time LEFT : $timerSterilize")
+                if (timerSterilize != "0") {
+                    // val minutes = timeLeftMillis.toInt() % 60000 / 1000
+                    // timeLeftMillis = timerSterilize.toLong() * 60000
+                    val leftSecondDuration : Int = timerSterilize.toInt()
+                    timeLeftMillis = leftSecondDuration.toLong() * 1000
+                    Log.d("TIMER ", "$timeLeftMillis")
+                    startTimer()
+                }
+
+            }
+            override fun onCancelled(p0: DatabaseError) {
+                Log.e(TAG, "Error fetch data form database")
+            }
+        })
+
+    }
+
+    private fun startTimer() {
+        countDownTimer = object : CountDownTimer(timeLeftMillis, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                timeLeftMillis = millisUntilFinished
+                val minutes = timeLeftMillis.toInt() / 60000
+                val second = timeLeftMillis.toInt() % 60000 / 1000
+                btnSterilize.isEnabled = false
+                updateTimer(minutes, second)
+            }
+
+            override fun onFinish() {
+                tvScan.text = "Scan"
+                btnSterilize.isEnabled = true
+            }
+        }.start()
+        timerRunning = true
+    }
+
+    private fun updateTimer(minutes : Int, second : Int) {
+        val secondLeft = timeLeftMillis.toInt() / 1000
+        var timeLeftText: String = "$minutes:"
+        if (second < 10) {
+            timeLeftText += "0"
+        }
+        timeLeftText += second
+        tvScan.text = timeLeftText
+
+        val database = FirebaseDatabase.getInstance().reference
+        val device = database.child("device").child(deviceId)
+        device.child("timerDuration").setValue(secondLeft)
     }
 }

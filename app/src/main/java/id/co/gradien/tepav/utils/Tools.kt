@@ -1,12 +1,21 @@
 package id.co.gradien.tepav.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.google.firebase.database.ValueEventListener
 import id.co.gradien.tepav.R
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 object Tools : AppCompatActivity() {
     /**
@@ -77,4 +86,27 @@ object Tools : AppCompatActivity() {
         }
         dialog.show()
     }
+
+    /**
+     * Display a result of [UTF+7]
+     * @param time is the Time from UTF+0
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun parseTimeINSTANT(time: String?): String? {
+        val f: DateTimeFormatter = DateTimeFormatter.ISO_INSTANT.withZone(ZoneId.from(ZoneOffset.UTC))
+        val parseDate = Instant.from(f.parse(time))
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy, HH:mm")
+                .withLocale(Locale.forLanguageTag("in_ID"))
+                .withZone(ZoneId.of("Asia/Jakarta"))
+        return formatter.format(parseDate)// could be written f.parse(time, Instant::from);
+    }
+
+    /**
+     * Display a result of converted from Epoch Time to Human-readable Time [HumanTime]
+     * @param time is the Epoch Time (Long/Int type data)
+     */
+    @SuppressLint("SimpleDateFormat")
+    private val dateFormat = SimpleDateFormat("dd-MM-yyyy")
+    fun getDateString(time: Long) : String = dateFormat.format(time)
+    fun getDateString(time: Int) : String = dateFormat.format(time)
 }

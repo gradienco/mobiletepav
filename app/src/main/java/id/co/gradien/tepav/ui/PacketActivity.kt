@@ -3,8 +3,7 @@ package id.co.gradien.tepav.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -26,6 +25,7 @@ class PacketActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_packet)
+        contentListPacket.visibility = INVISIBLE
 
         btnCloseAllPacketActivity.setOnClickListener { finish() }
 
@@ -40,6 +40,8 @@ class PacketActivity : AppCompatActivity() {
         val myPacket = packetData.orderByChild("user").equalTo(userId)
         myPacket.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
+                contentListPacket.visibility = VISIBLE
+                pbListPacket.visibility = GONE
                 p0.let {
                     packetList.clear()
                     for (data in p0.children){

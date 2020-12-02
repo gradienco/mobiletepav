@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,9 +8,8 @@
     android:orientation="vertical"
     android:padding="15dp">
 
-
-
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/contentHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -18,718 +17,723 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/btnSetting"
-            android:layout_alignParentEnd="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_setting"
-            android:layout_marginHorizontal="15dp"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="HAI TEPAVERS"
-            android:textSize="26sp"
-            android:fontFamily="@font/ubuntu_bold"
-            android:textColor="@color/black_400"
-            />
-
-        <TextView
-            android:maxWidth="300dp"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:text="Sudah cek paket kamu hari ini ?"
-            android:fontFamily="@font/mulireg"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:cardCornerRadius="20dp"
-            android:layout_marginVertical="10dp"
-            android:layout_marginHorizontal="5dp"
-            app:cardElevation="4dp"
-            android:outlineSpotShadowColor="@color/colorPrimaryDark"
-            android:outlineAmbientShadowColor="@color/colorPrimaryDark"
-            tools:targetApi="p">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/btnSetting"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_setting"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@color/colorPrimary">
+                android:paddingBottom="20dp">
 
-                <RelativeLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingVertical="10dp"
-                    android:paddingHorizontal="10dp"
-                    android:background="@color/colorWhite">
+                    android:layout_height="wrap_content"
+                    android:text="HAI TEPAVERS"
+                    android:textSize="26sp"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:textColor="@color/black_400"
+                    />
+
+                <TextView
+                    android:maxWidth="300dp"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:text="Sudah cek paket kamu hari ini ?"
+                    android:fontFamily="@font/mulireg"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="20dp"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginHorizontal="5dp"
+                    app:cardElevation="4dp"
+                    android:outlineSpotShadowColor="@color/colorPrimaryDark"
+                    android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+                    tools:targetApi="p">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_marginHorizontal="10dp"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_tepav_control"
-                            android:layout_marginEnd="6dp"
-                            android:tint="@color/colorBlack"/>
-                        <TextView
-                            android:textAlignment="center"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Kontrol Tepav"
-                            android:fontFamily="@font/mulibold"
-                            android:textColor="@color/colorBlack"/>
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:gravity="center"
-                    android:layout_marginVertical="5dp"
-                    android:layout_gravity="center">
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/btnDevices"
-                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        app:cardCornerRadius="12dp"
-                        android:layout_marginVertical="10dp"
-                        android:layout_marginHorizontal="10dp">
-                        <LinearLayout
+                        android:orientation="vertical"
+                        android:background="@color/colorPrimary">
+
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="horizontal"
-                            android:padding="10dp">
-                            <ImageView
+                            android:paddingVertical="10dp"
+                            android:paddingHorizontal="10dp"
+                            android:background="@color/colorWhite">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_marginHorizontal="10dp"
+                                android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_tepav_control"
+                                    android:layout_marginEnd="6dp"
+                                    android:tint="@color/colorBlack"/>
+                                <TextView
+                                    android:textAlignment="center"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Kontrol Tepav"
+                                    android:fontFamily="@font/mulibold"
+                                    android:textColor="@color/colorBlack"/>
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:gravity="center"
+                            android:layout_marginVertical="5dp"
+                            android:layout_gravity="center">
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/btnDevices"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                app:cardCornerRadius="12dp"
+                                android:layout_marginVertical="10dp"
+                                android:layout_marginHorizontal="10dp">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:padding="10dp">
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_device"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Tepav Device"
+                                        android:fontFamily="@font/mulireg"
+                                        android:textSize="12sp"
+                                        android:paddingHorizontal="6dp"
+                                        android:id="@+id/textNameDevice"/>
+                                    <ImageView
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_width="12dp"
+                                        android:layout_height="12dp"
+                                        android:src="@drawable/ic_arrow_forward"
+                                        android:tint="@color/black_400"
+                                        />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <GridLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_device"/>
+                                android:columnCount="3"
+                                android:rowCount="2"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        app:cardCornerRadius="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginHorizontal="5dp"
+                                        app:cardElevation="4dp">
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="vertical"
+                                            android:layout_marginVertical="8dp"
+                                            android:layout_margin="6dp">
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:text="Pintu \nDepan"
+                                                android:textAlignment="center"
+                                                android:textColor="@color/colorBlack"
+                                                android:fontFamily="@font/mulibold"
+                                                android:layout_marginBottom="5dp"
+                                                android:textSize="12sp"/>
+                                            <androidx.cardview.widget.CardView
+                                                android:id="@+id/btnUnlockFrontDoor"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                app:cardCornerRadius="12dp"
+                                                android:layout_marginVertical="5dp"
+                                                android:layout_marginHorizontal="5dp"
+                                                app:cardElevation="4dp"
+                                                android:outlineSpotShadowColor="@color/colorBlack"
+                                                android:outlineAmbientShadowColor="@color/colorBlack"
+                                                tools:targetApi="p">
+
+                                                <LinearLayout
+                                                    android:id="@+id/layoutUnlockFrontDoor"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:gravity="center"
+                                                    android:orientation="horizontal"
+                                                    android:padding="10dp">
+                                                    <ImageView
+                                                        android:id="@+id/ivUnlockFrontDoor"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:src="@drawable/ic_unlock" />
+                                                </LinearLayout>
+                                            </androidx.cardview.widget.CardView>
+
+                                            <androidx.cardview.widget.CardView
+                                                android:id="@+id/btnLockFrontDoor"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                app:cardCornerRadius="12dp"
+                                                android:layout_marginBottom="5dp"
+                                                app:cardElevation="4dp"
+                                                android:outlineSpotShadowColor="@color/colorBlack"
+                                                android:outlineAmbientShadowColor="@color/black_800"
+                                                tools:targetApi="p">
+                                                <LinearLayout
+                                                    android:id="@+id/layoutLockFrontDoor"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:gravity="center"
+                                                    android:orientation="horizontal"
+                                                    android:padding="10dp">
+                                                    <ImageView
+                                                        android:id="@+id/ivLockFrontDoor"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:src="@drawable/ic_lock"/>
+                                                </LinearLayout>
+                                            </androidx.cardview.widget.CardView>
+                                            <TextView
+                                                android:id="@+id/tvMessageFrontDoor"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:text="Tertutup"
+                                                android:textAlignment="center"
+                                                android:textColor="@color/colorBlack"
+                                                android:fontFamily="@font/mulireg"
+                                                android:textSize="11sp"
+                                                android:layout_marginBottom="5dp"/>
+                                        </LinearLayout>
+                                    </androidx.cardview.widget.CardView>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        app:cardCornerRadius="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        app:cardElevation="4dp">
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="vertical"
+                                            android:layout_marginVertical="8dp"
+                                            android:layout_margin="6dp">
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:text="Pintu \nDepan"
+                                                android:textAlignment="center"
+                                                android:textColor="@color/colorBlack"
+                                                android:fontFamily="@font/mulibold"
+                                                android:layout_marginBottom="5dp"
+                                                android:textSize="12sp"/>
+                                            <androidx.cardview.widget.CardView
+                                                android:id="@+id/btnUnlockBackDoor"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                app:cardCornerRadius="12dp"
+                                                android:layout_marginVertical="5dp"
+                                                android:layout_marginHorizontal="5dp"
+                                                app:cardElevation="4dp"
+                                                android:outlineSpotShadowColor="@color/colorBlack"
+                                                android:outlineAmbientShadowColor="@color/colorBlack"
+                                                tools:targetApi="p">
+
+                                                <LinearLayout
+                                                    android:id="@+id/layoutUnlockBackDoor"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:gravity="center"
+                                                    android:orientation="horizontal"
+                                                    android:padding="10dp">
+                                                    <ImageView
+                                                        android:id="@+id/ivUnlockBackDoor"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:src="@drawable/ic_unlock" />
+                                                </LinearLayout>
+                                            </androidx.cardview.widget.CardView>
+
+                                            <androidx.cardview.widget.CardView
+                                                android:id="@+id/btnLockBackDoor"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                app:cardCornerRadius="12dp"
+                                                android:layout_marginBottom="5dp"
+                                                app:cardElevation="4dp"
+                                                android:outlineSpotShadowColor="@color/colorBlack"
+                                                android:outlineAmbientShadowColor="@color/black_800"
+                                                tools:targetApi="p">
+                                                <LinearLayout
+                                                    android:id="@+id/layoutLockBackDoor"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:gravity="center"
+                                                    android:orientation="horizontal"
+                                                    android:padding="10dp">
+                                                    <ImageView
+                                                        android:id="@+id/ivLockBackDoor"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:src="@drawable/ic_lock"/>
+                                                </LinearLayout>
+                                            </androidx.cardview.widget.CardView>
+                                            <TextView
+                                                android:id="@+id/tvMessageBackDoor"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:text="Tertutup"
+                                                android:textAlignment="center"
+                                                android:textColor="@color/colorBlack"
+                                                android:fontFamily="@font/mulireg"
+                                                android:textSize="11sp"
+                                                android:layout_marginBottom="5dp"/>
+                                        </LinearLayout>
+                                    </androidx.cardview.widget.CardView>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        app:cardCornerRadius="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginHorizontal="10dp"
+                                        app:cardElevation="4dp">
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="vertical"
+                                            android:layout_marginVertical="8dp"
+                                            android:layout_margin="12dp">
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:text="Sterilisasi"
+                                                android:textAlignment="center"
+                                                android:textColor="@color/colorBlack"
+                                                android:fontFamily="@font/mulibold"
+                                                android:layout_marginBottom="5dp"/>
+
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="horizontal">
+                                                <androidx.cardview.widget.CardView
+                                                    android:id="@+id/btnManual"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    app:cardCornerRadius="6dp"
+                                                    android:layout_marginHorizontal="5dp"
+                                                    android:layout_marginVertical="10dp"
+                                                    app:cardElevation="4dp"
+                                                    android:outlineSpotShadowColor="@color/colorBlack"
+                                                    android:outlineAmbientShadowColor="@color/colorBlack"
+                                                    tools:targetApi="p">
+
+                                                    <LinearLayout
+                                                        android:id="@+id/layoutManual"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:gravity="center"
+                                                        android:orientation="horizontal"
+                                                        android:paddingVertical="5dp"
+                                                        android:paddingHorizontal="10dp"
+                                                        >
+                                                        <TextView
+                                                            android:id="@+id/tvManual"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="Manual"
+                                                            android:fontFamily="@font/mulireg"
+                                                            android:textSize="12sp"/>
+                                                    </LinearLayout>
+                                                </androidx.cardview.widget.CardView>
+                                                <androidx.cardview.widget.CardView
+                                                    android:id="@+id/btnOtomatis"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    app:cardCornerRadius="6dp"
+                                                    android:layout_marginHorizontal="5dp"
+                                                    app:cardElevation="4dp"
+                                                    android:outlineSpotShadowColor="@color/colorBlack"
+                                                    android:outlineAmbientShadowColor="@color/colorBlack"
+                                                    tools:targetApi="p">
+
+                                                    <LinearLayout
+                                                        android:id="@+id/layoutOtomatis"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:gravity="center"
+                                                        android:orientation="horizontal"
+                                                        android:paddingVertical="5dp"
+                                                        android:paddingHorizontal="10dp">
+                                                        <TextView
+                                                            android:id="@+id/tvOtomatis"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="Otomatis"
+                                                            android:fontFamily="@font/mulireg"
+                                                            android:textSize="12sp"/>
+                                                    </LinearLayout>
+                                                </androidx.cardview.widget.CardView>
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/btnSterilize"
+                                                android:layout_width="80dp"
+                                                android:layout_height="80dp"
+                                                android:background="@drawable/ic_marker_dot"
+                                                android:gravity="center">
+                                                <TextView
+                                                    android:id="@+id/tvScan"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Scan"
+                                                    android:fontFamily="@font/mulibold"
+                                                    android:textColor="@color/colorWhite"/>
+                                            </LinearLayout>
+                                        </LinearLayout>
+                                    </androidx.cardview.widget.CardView>
+                                </LinearLayout>
+
+                            </GridLayout>
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:columnCount="3"
+                android:rowCount="1">
+
+                <LinearLayout
+                    android:id="@+id/layout_btn_checkin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btn_check_in"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="20dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="8dp"
+                        android:outlineSpotShadowColor="@color/colorPrimaryDark"
+                        android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+                        tools:targetApi="p">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:background="@drawable/bg_button"
+                                android:backgroundTint="@color/colorPrimary">
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_temperature" />
+                            </LinearLayout>
+
                             <TextView
+                                android:id="@+id/textTemperature"
+                                android:layout_gravity="center"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Tepav Device"
-                                android:fontFamily="@font/mulireg"
+                                android:text="38"
+                                android:textAlignment="center"
+                                android:maxWidth="120dp"
+                                android:layout_marginVertical="5dp"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="28sp"
+                                android:fontFamily="@font/mulireg"/>
+                            <TextView
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Suhu"
+                                android:textAlignment="center"
+                                android:maxWidth="120dp"
+                                android:layout_marginTop="0dp"
+                                android:textColor="@color/colorBlack"
                                 android:textSize="12sp"
-                                android:paddingHorizontal="6dp"
-                                android:id="@+id/textNameDevice"/>
-                            <ImageView
-                                android:layout_gravity="center_vertical"
-                                android:layout_width="12dp"
-                                android:layout_height="12dp"
-                                android:src="@drawable/ic_arrow_forward"
-                                android:tint="@color/black_400"
-                                />
+                                android:fontFamily="@font/mulireg"/>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
-                    <GridLayout
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:columnCount="3"
-                        android:rowCount="2"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="10dp">
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="20dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="8dp"
+                        android:outlineSpotShadowColor="@color/colorPrimaryDark"
+                        android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+                        tools:targetApi="p">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:gravity="center"
                             android:orientation="vertical">
-                            <androidx.cardview.widget.CardView
+                            <LinearLayout
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:background="@drawable/bg_button"
+                                android:backgroundTint="@color/colorPrimary">
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_humidity" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/textHumidity"
+                                android:layout_gravity="center"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:text="40"
+                                android:textAlignment="center"
+                                android:maxWidth="120dp"
+                                android:layout_marginVertical="5dp"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="28sp"
+                                android:fontFamily="@font/mulireg"/>
+                            <TextView
                                 android:layout_gravity="center"
-                                app:cardCornerRadius="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:layout_marginHorizontal="5dp"
-                                app:cardElevation="4dp">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:layout_marginVertical="8dp"
-                                    android:layout_margin="6dp">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:text="Pintu \nDepan"
-                                        android:textAlignment="center"
-                                        android:textColor="@color/colorBlack"
-                                        android:fontFamily="@font/mulibold"
-                                        android:layout_marginBottom="5dp"
-                                        android:textSize="12sp"/>
-                                    <androidx.cardview.widget.CardView
-                                        android:id="@+id/btnUnlockFrontDoor"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        app:cardCornerRadius="12dp"
-                                        android:layout_marginVertical="5dp"
-                                        android:layout_marginHorizontal="5dp"
-                                        app:cardElevation="4dp"
-                                        android:outlineSpotShadowColor="@color/colorBlack"
-                                        android:outlineAmbientShadowColor="@color/colorBlack"
-                                        tools:targetApi="p">
-
-                                        <LinearLayout
-                                            android:id="@+id/layoutUnlockFrontDoor"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:gravity="center"
-                                            android:orientation="horizontal"
-                                            android:padding="10dp">
-                                            <ImageView
-                                                android:id="@+id/ivUnlockFrontDoor"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:src="@drawable/ic_unlock" />
-                                        </LinearLayout>
-                                    </androidx.cardview.widget.CardView>
-
-                                    <androidx.cardview.widget.CardView
-                                        android:id="@+id/btnLockFrontDoor"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        app:cardCornerRadius="12dp"
-                                        android:layout_marginBottom="5dp"
-                                        app:cardElevation="4dp"
-                                        android:outlineSpotShadowColor="@color/colorBlack"
-                                        android:outlineAmbientShadowColor="@color/black_800"
-                                        tools:targetApi="p">
-                                        <LinearLayout
-                                            android:id="@+id/layoutLockFrontDoor"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:gravity="center"
-                                            android:orientation="horizontal"
-                                            android:padding="10dp">
-                                            <ImageView
-                                                android:id="@+id/ivLockFrontDoor"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:src="@drawable/ic_lock"/>
-                                        </LinearLayout>
-                                    </androidx.cardview.widget.CardView>
-                                    <TextView
-                                        android:id="@+id/tvMessageFrontDoor"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:text="Tertutup"
-                                        android:textAlignment="center"
-                                        android:textColor="@color/colorBlack"
-                                        android:fontFamily="@font/mulireg"
-                                        android:textSize="11sp"
-                                        android:layout_marginBottom="5dp"/>
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kelembaban"
+                                android:textAlignment="center"
+                                android:maxWidth="120dp"
+                                android:layout_marginTop="0dp"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/mulireg"/>
                         </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="20dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="8dp"
+                        android:outlineSpotShadowColor="@color/colorPrimaryDark"
+                        android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+                        tools:targetApi="p">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:gravity="center"
                             android:orientation="vertical">
-                            <androidx.cardview.widget.CardView
+                            <LinearLayout
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:background="@drawable/bg_button"
+                                android:backgroundTint="@color/colorPrimary">
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_uv" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/textUV"
+                                android:layout_gravity="center"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:text="20"
+                                android:textAlignment="center"
+                                android:maxWidth="120dp"
+                                android:layout_marginVertical="5dp"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="28sp"
+                                android:fontFamily="@font/mulireg"/>
+                            <TextView
                                 android:layout_gravity="center"
-                                app:cardCornerRadius="10dp"
-                                android:layout_marginBottom="10dp"
-                                app:cardElevation="4dp">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:layout_marginVertical="8dp"
-                                    android:layout_margin="6dp">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:text="Pintu \nDepan"
-                                        android:textAlignment="center"
-                                        android:textColor="@color/colorBlack"
-                                        android:fontFamily="@font/mulibold"
-                                        android:layout_marginBottom="5dp"
-                                        android:textSize="12sp"/>
-                                    <androidx.cardview.widget.CardView
-                                        android:id="@+id/btnUnlockBackDoor"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        app:cardCornerRadius="12dp"
-                                        android:layout_marginVertical="5dp"
-                                        android:layout_marginHorizontal="5dp"
-                                        app:cardElevation="4dp"
-                                        android:outlineSpotShadowColor="@color/colorBlack"
-                                        android:outlineAmbientShadowColor="@color/colorBlack"
-                                        tools:targetApi="p">
-
-                                        <LinearLayout
-                                            android:id="@+id/layoutUnlockBackDoor"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:gravity="center"
-                                            android:orientation="horizontal"
-                                            android:padding="10dp">
-                                            <ImageView
-                                                android:id="@+id/ivUnlockBackDoor"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:src="@drawable/ic_unlock" />
-                                        </LinearLayout>
-                                    </androidx.cardview.widget.CardView>
-
-                                    <androidx.cardview.widget.CardView
-                                        android:id="@+id/btnLockBackDoor"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        app:cardCornerRadius="12dp"
-                                        android:layout_marginBottom="5dp"
-                                        app:cardElevation="4dp"
-                                        android:outlineSpotShadowColor="@color/colorBlack"
-                                        android:outlineAmbientShadowColor="@color/black_800"
-                                        tools:targetApi="p">
-                                        <LinearLayout
-                                            android:id="@+id/layoutLockBackDoor"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:gravity="center"
-                                            android:orientation="horizontal"
-                                            android:padding="10dp">
-                                            <ImageView
-                                                android:id="@+id/ivLockBackDoor"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:src="@drawable/ic_lock"/>
-                                        </LinearLayout>
-                                    </androidx.cardview.widget.CardView>
-                                    <TextView
-                                        android:id="@+id/tvMessageBackDoor"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:text="Tertutup"
-                                        android:textAlignment="center"
-                                        android:textColor="@color/colorBlack"
-                                        android:fontFamily="@font/mulireg"
-                                        android:textSize="11sp"
-                                        android:layout_marginBottom="5dp"/>
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <androidx.cardview.widget.CardView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                app:cardCornerRadius="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:layout_marginHorizontal="10dp"
-                                app:cardElevation="4dp">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:layout_marginVertical="8dp"
-                                    android:layout_margin="12dp">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:text="Sterilisasi"
-                                        android:textAlignment="center"
-                                        android:textColor="@color/colorBlack"
-                                        android:fontFamily="@font/mulibold"
-                                        android:layout_marginBottom="5dp"/>
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-                                        <androidx.cardview.widget.CardView
-                                            android:id="@+id/btnManual"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            app:cardCornerRadius="6dp"
-                                            android:layout_marginHorizontal="5dp"
-                                            android:layout_marginVertical="10dp"
-                                            app:cardElevation="4dp"
-                                            android:outlineSpotShadowColor="@color/colorBlack"
-                                            android:outlineAmbientShadowColor="@color/colorBlack"
-                                            tools:targetApi="p">
-
-                                            <LinearLayout
-                                                android:id="@+id/layoutManual"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:gravity="center"
-                                                android:orientation="horizontal"
-                                                android:paddingVertical="5dp"
-                                                android:paddingHorizontal="10dp"
-                                                >
-                                                <TextView
-                                                    android:id="@+id/tvManual"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:text="Manual"
-                                                    android:fontFamily="@font/mulireg"
-                                                    android:textSize="12sp"/>
-                                            </LinearLayout>
-                                        </androidx.cardview.widget.CardView>
-                                        <androidx.cardview.widget.CardView
-                                            android:id="@+id/btnOtomatis"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            app:cardCornerRadius="6dp"
-                                            android:layout_marginHorizontal="5dp"
-                                            app:cardElevation="4dp"
-                                            android:outlineSpotShadowColor="@color/colorBlack"
-                                            android:outlineAmbientShadowColor="@color/colorBlack"
-                                            tools:targetApi="p">
-
-                                            <LinearLayout
-                                                android:id="@+id/layoutOtomatis"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:gravity="center"
-                                                android:orientation="horizontal"
-                                                android:paddingVertical="5dp"
-                                                android:paddingHorizontal="10dp">
-                                                <TextView
-                                                    android:id="@+id/tvOtomatis"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:text="Otomatis"
-                                                    android:fontFamily="@font/mulireg"
-                                                    android:textSize="12sp"/>
-                                            </LinearLayout>
-                                        </androidx.cardview.widget.CardView>
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:id="@+id/btnSterilize"
-                                        android:layout_width="80dp"
-                                        android:layout_height="80dp"
-                                        android:background="@drawable/ic_marker_dot"
-                                        android:gravity="center">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Scan"
-                                            android:fontFamily="@font/mulibold"
-                                            android:textColor="@color/colorWhite"/>
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
+                                android:text="UV"
+                                android:textAlignment="center"
+                                android:maxWidth="120dp"
+                                android:layout_marginTop="0dp"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/mulireg"/>
                         </LinearLayout>
-
-                    </GridLayout>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
+            </GridLayout>
 
-
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-
-    <GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:columnCount="3"
-        android:rowCount="1">
-
-        <LinearLayout
-            android:id="@+id/layout_btn_checkin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center">
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btn_check_in"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="8dp"
-                android:outlineSpotShadowColor="@color/colorPrimaryDark"
-                android:outlineAmbientShadowColor="@color/colorPrimaryDark"
-                tools:targetApi="p">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:background="@drawable/bg_button"
-                        android:backgroundTint="@color/colorPrimary">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_temperature" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/textTemperature"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="38"
-                        android:textAlignment="center"
-                        android:maxWidth="120dp"
-                        android:layout_marginVertical="5dp"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="28sp"
-                        android:fontFamily="@font/mulireg"/>
-                    <TextView
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Suhu"
-                        android:textAlignment="center"
-                        android:maxWidth="120dp"
-                        android:layout_marginTop="0dp"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/mulireg"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center">
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="8dp"
-                android:outlineSpotShadowColor="@color/colorPrimaryDark"
-                android:outlineAmbientShadowColor="@color/colorPrimaryDark"
-                tools:targetApi="p">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:background="@drawable/bg_button"
-                        android:backgroundTint="@color/colorPrimary">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_humidity" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/textHumidity"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="40"
-                        android:textAlignment="center"
-                        android:maxWidth="120dp"
-                        android:layout_marginVertical="5dp"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="28sp"
-                        android:fontFamily="@font/mulireg"/>
-                    <TextView
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kelembaban"
-                        android:textAlignment="center"
-                        android:maxWidth="120dp"
-                        android:layout_marginTop="0dp"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="10sp"
-                        android:fontFamily="@font/mulireg"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center">
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="8dp"
-                android:outlineSpotShadowColor="@color/colorPrimaryDark"
-                android:outlineAmbientShadowColor="@color/colorPrimaryDark"
-                tools:targetApi="p">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:background="@drawable/bg_button"
-                        android:backgroundTint="@color/colorPrimary">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_uv" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/textUV"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="20"
-                        android:textAlignment="center"
-                        android:maxWidth="120dp"
-                        android:layout_marginVertical="5dp"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="28sp"
-                        android:fontFamily="@font/mulireg"/>
-                    <TextView
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="UV"
-                        android:textAlignment="center"
-                        android:maxWidth="120dp"
-                        android:layout_marginTop="0dp"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/mulireg"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-    </GridLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Paket yang kamu terima"
-            android:fontFamily="@font/mulibold"
-            android:textSize="18sp"
-            android:textColor="@color/black_800"/>
-
-        <TextView
-            android:id="@+id/btnAllPacket"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="lihat semua"
-            android:gravity="end"
-            android:textColor="@color/colorBlue"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <LinearLayout
-            android:visibility="visible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp">
-            <androidx.recyclerview.widget.RecyclerView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/recycleviewPacket"
-                tools:listitem="@layout/item_packet"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paket yang kamu terima"
+                    android:fontFamily="@font/mulibold"
+                    android:textSize="18sp"
+                    android:textColor="@color/black_800"/>
+
+                <TextView
+                    android:id="@+id/btnAllPacket"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="lihat semua"
+                    android:gravity="end"
+                    android:textColor="@color/colorBlue"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="5dp">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/recycleviewPacket"
+                        tools:listitem="@layout/item_packet"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvEmptyPack"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/tidak_ada_paket_hari_ini"
+                    android:gravity="center"
+                    android:fontFamily="@font/mulireg"
+                    android:visibility="gone"/>
+            </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvEmptyPack"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/tidak_ada_paket_hari_ini"
-            android:gravity="center"
-            android:fontFamily="@font/mulireg"
-            android:visibility="gone"/>
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
+    <ProgressBar
+        android:id="@+id/pbHome"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 
-
-</LinearLayout>
+</RelativeLayout>

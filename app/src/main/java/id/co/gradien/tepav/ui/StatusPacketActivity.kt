@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.View.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
@@ -13,13 +14,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import id.co.gradien.tepav.R
 import id.co.gradien.tepav.data.PacketModel
+import id.co.gradien.tepav.utils.Tools.parseTimeINSTANT
 import kotlinx.android.synthetic.main.activity_status_packet.*
-import java.time.Instant
-import java.time.ZoneId
-import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-import java.util.*
 
 class StatusPacketActivity : AppCompatActivity() {
 
@@ -29,6 +25,7 @@ class StatusPacketActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_status_packet)
         btnCloseDetailPacketActivity.setOnClickListener { finish() }
+        srDetailPacket.visibility = INVISIBLE
 
         getData()
         onSwipeRefresh()
@@ -38,15 +35,20 @@ class StatusPacketActivity : AppCompatActivity() {
         val packetId = intent.getStringExtra("id")
         val statusData = FirebaseDatabase.getInstance().getReference("packet").child(packetId!!)
         statusData.addValueEventListener(object : ValueEventListener {
+
             @RequiresApi(Build.VERSION_CODES.O)
             @SuppressLint("SetTextI18n")
             override fun onDataChange(p0: DataSnapshot) {
+                srDetailPacket.visibility = VISIBLE
+                pbDetailPacket.visibility = GONE
                 p0.let {
                     val packet = it.getValue(PacketModel::class.java)
                     Log.d(TAG, "Data Packet: $packet")
                     val receiveTime = parseTimeINSTANT(packet?.receiveTime)
                     val cleaningTime = parseTimeINSTANT(packet?.cleaningTime)
                     val sterilizedTime = parseTimeINSTANT(packet?.sterilizedTime)
+
+
                     Log.d(TAG, "Convert Time = Receive : $receiveTime, Cleaning : $cleaningTime, Sterilized : $sterilizedTime")
 
                     fun setReceivedUI() {
@@ -101,19 +103,11 @@ class StatusPacketActivity : AppCompatActivity() {
     }
 
     private fun onSwipeRefresh(){
-        srStatusPacket.setOnRefreshListener {
+        srDetailPacket.setOnRefreshListener {
             getData()
-            Handler().postDelayed({ srStatusPacket.isRefreshing = false }, 500)
+            Handler().postDelayed({ srDetailPacket.isRefreshing = false }, 500)
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun parseTimeINSTANT(time: String?): String? {
-        val f: DateTimeFormatter = DateTimeFormatter.ISO_INSTANT.withZone(ZoneId.from(ZoneOffset.UTC))
-        val parseDate = Instant.from(f.parse(time))
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy, HH:mm")
-                .withLocale(Locale.forLanguageTag("in_ID"))
-                .withZone(ZoneId.of("Asia/Jakarta"))
-        return formatter.format(parseDate)// could be written f.parse(time, Instant::from);
-    }
+
 }
