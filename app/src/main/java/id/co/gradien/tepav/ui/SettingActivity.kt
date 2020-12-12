@@ -43,7 +43,7 @@ class SettingActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 textSSID.text = dataSnapshot.child("wifi").child("ssid").value.toString()
                 val lastConnect = dataSnapshot.child("wifi").child("lastConnect").value.toString()
-                textLastConn.text = "${getDateString(lastConnect.toLong())}WIB"
+                textLastConn.text = getDateString(lastConnect.toLong())
 
 
 
