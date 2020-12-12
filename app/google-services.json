@@ -15,6 +15,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "886877643653-6a32ml1om3nrv3lav0josg37l58qa1v5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.co.gradien.tepav",
+            "certificate_hash": "68eef64d7412116fc3fbd3e89dfb4fd6f58ef8de"
+          }
+        },
+        {
+          "client_id": "886877643653-at1lonetgh2g5qtkrugphg1b433s3vih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.co.gradien.tepav",
+            "certificate_hash": "97a221276457027dd8a77c3b2fabe1b52dfaf068"
+          }
+        },
+        {
+          "client_id": "886877643653-v0i287tvn17vsogf9la28lfqq601jint.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.co.gradien.tepav",
+            "certificate_hash": "37013377dd0d8de6df80a2c80deb384e7dad6991"
+          }
+        },
+        {
           "client_id": "886877643653-716pv22fputd1suk9u2qhcin1jl6epif.apps.googleusercontent.com",
           "client_type": 3
         }
