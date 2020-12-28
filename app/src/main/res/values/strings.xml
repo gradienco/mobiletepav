@@ -21,4 +21,5 @@
     <string name="wifi_name">WIFI NAME</string>
     <string name="wifi_status">Wifi status</string>
     <string name="pengaturan">Pengaturan</string>
+    <string name="keterangan_login">Dengan ini, \nPaket kamu sudah aman kok, jadi gak usah risau. Paket kamu juga sudah steril loh, jadi kamu ga perlu takut lagi dengan virus yang hanya datang untuk menyakiti.\n~Tepav app</string>
 </resources>

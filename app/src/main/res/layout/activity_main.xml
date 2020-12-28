@@ -43,6 +43,7 @@
             android:layout_centerHorizontal="true"/>
 
         <TextView
+            android:id="@+id/tvSlogan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/slogan"
@@ -50,7 +51,6 @@
             android:layout_below="@id/tv_logo_nama"
             android:textColor="@android:color/white"
             android:layout_centerHorizontal="true"/>
-
 
     </RelativeLayout>
 
