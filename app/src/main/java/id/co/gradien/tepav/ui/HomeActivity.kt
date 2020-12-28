@@ -265,15 +265,19 @@ class HomeActivity : AppCompatActivity() {
                         packet!!.id = data.key.toString()
                         packetList.add(packet)
                     }
-                    if (packetList.size >= 2) {
-                        val packetListLimit =  packetList.subList(0,2)
-                        packetAdapter.setData(packetListLimit)
-                    } else if (packetList.size == 1) {
-                        val packetListLimit =  packetList.subList(0,1)
-                        packetAdapter.setData(packetListLimit)
-                    } else {
-                        tvEmptyPack.visibility = VISIBLE
-                        recycleviewPacket.visibility = GONE
+                    when {
+                        packetList.size >= 2 -> {
+                            val packetListLimit =  packetList.subList(0,2)
+                            packetAdapter.setData(packetListLimit)
+                        }
+                        packetList.size == 1 -> {
+                            val packetListLimit =  packetList.subList(0,1)
+                            packetAdapter.setData(packetListLimit)
+                        }
+                        else -> {
+                            tvEmptyPack.visibility = VISIBLE
+                            recycleviewPacket.visibility = GONE
+                        }
                     }
                 }
             }
