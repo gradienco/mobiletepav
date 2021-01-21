@@ -30,7 +30,7 @@ class DeviceAdapter(list: List<DeviceModel>) : RecyclerView.Adapter<DeviceAdapte
         view.layoutDevice.setOnClickListener {
             context.startActivity(
                 Intent(context, HomeActivity::class.java)
-                    .putExtra("deviceId", device.id)
+                    .putExtra("deviceId", device.mac)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             (context as Activity).finish()
         }

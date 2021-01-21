@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,6 +38,8 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_device)
+
+        Toast.makeText(this, "Pilih atau Scan Device terlebih dahulu", Toast.LENGTH_SHORT).show()
 
         btnCloseDevicesActivity.setOnClickListener { finish() }
 
@@ -70,8 +73,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
                     deviceList.clear()
                     for (data in p0.children) {
                         val device = data.getValue(DeviceModel::class.java)
-                        device!!.id = data.key.toString()
-                        deviceList.add(device)
+                        deviceList.add(device!!)
                         Log.d(TAG, "Device : $deviceList")
                     }
                     //Log.i(TAG, deviceList.toString())

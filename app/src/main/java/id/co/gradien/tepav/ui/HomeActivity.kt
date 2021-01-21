@@ -19,6 +19,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import id.co.gradien.tepav.R
 import id.co.gradien.tepav.adapter.PacketAdapter
+import id.co.gradien.tepav.data.AppDatabase
+import id.co.gradien.tepav.data.DeviceDao
 import id.co.gradien.tepav.data.PacketModel
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -26,7 +28,7 @@ import kotlinx.android.synthetic.main.activity_home.*
 class HomeActivity : AppCompatActivity() {
 
     private val TAG = "HOME ACTIVITY"
-    private var deviceId = "device001"
+    private var deviceId:String? = null
     private var packetList = mutableListOf<PacketModel>()
     private lateinit var packetAdapter: PacketAdapter
 
@@ -42,9 +44,13 @@ class HomeActivity : AppCompatActivity() {
         intent.getStringExtra("deviceId")?.let {
             deviceId = it
         }
+        if (deviceId == null){
+            startActivity(Intent(this@HomeActivity, DeviceActivity::class.java))
+        }
+
         val database = FirebaseDatabase.getInstance().reference
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        val device = database.child("device").child(deviceId)
+        val device = database.child("device").child(deviceId!!)
         device.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 pbHome.visibility = GONE
@@ -339,7 +345,7 @@ class HomeActivity : AppCompatActivity() {
         tvScan.text = timeLeftText
 
         val database = FirebaseDatabase.getInstance().reference
-        val device = database.child("device").child(deviceId)
+        val device = database.child("device").child(deviceId!!)
         device.child("timerLeft").setValue(secondLeft)
     }
 }
