@@ -291,17 +291,18 @@ class HomeActivity : AppCompatActivity() {
 
         device.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val timerSterilize = dataSnapshot.child("timerDuration").value.toString()
-                Log.d(TAG, "Time LEFT : $timerSterilize")
-                if (timerSterilize != "0") {
-                    // val minutes = timeLeftMillis.toInt() % 60000 / 1000
-                    // timeLeftMillis = timerSterilize.toLong() * 60000
-                    val leftSecondDuration : Int = timerSterilize.toInt()
-                    timeLeftMillis = leftSecondDuration.toLong() * 1000
-                    Log.d("TIMER ", "$timeLeftMillis")
-                    startTimer()
+                if (dataSnapshot.hasChild("timerLeft")){
+                    val timerSterilize = dataSnapshot.child("timerLeft").value.toString()
+                    Log.d(TAG, "Time LEFT : $timerSterilize")
+                    if (timerSterilize != "0") {
+                        // val minutes = timeLeftMillis.toInt() % 60000 / 1000
+                        // timeLeftMillis = timerSterilize.toLong() * 60000
+                        val leftSecondDuration : Int = timerSterilize.toInt()
+                        timeLeftMillis = leftSecondDuration.toLong() * 1000
+                        Log.d("TIMER ", "$timeLeftMillis")
+                        startTimer()
+                    }
                 }
-
             }
             override fun onCancelled(p0: DatabaseError) {
                 Log.e(TAG, "Error fetch data form database")
@@ -339,6 +340,6 @@ class HomeActivity : AppCompatActivity() {
 
         val database = FirebaseDatabase.getInstance().reference
         val device = database.child("device").child(deviceId)
-        device.child("timerDuration").setValue(secondLeft)
+        device.child("timerLeft").setValue(secondLeft)
     }
 }

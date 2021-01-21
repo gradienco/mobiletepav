@@ -84,14 +84,21 @@ class ScanDeviceActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Log.d(TAG, "Child : ${snapshot.hasChild(qrResult!!)}")
                 if (snapshot.hasChild(qrResult)) {
-                    Log.i(TAG, "Device registered already!")
+//                  [option A] block if device already registered
+//                    Log.i(TAG, "Device registered already!")
+//                    Log.d(TAG, "Child True = ${snapshot.hasChild(qrResult)}")
+//                    finish()
+//                    startActivity(Intent(this@ScanDeviceActivity, DeviceActivity::class.java).putExtra(DeviceActivity.ADD_DEVICE, "failed"))
+
+//                  [option B] update paired device with this one
+                    deviceData.child(qrResult).child("user").setValue(userId)
                     Log.d(TAG, "Child True = ${snapshot.hasChild(qrResult)}")
                     finish()
-                    startActivity(Intent(this@ScanDeviceActivity, DeviceActivity::class.java).putExtra(DeviceActivity.ADD_DEVICE, "failed"))
+                    startActivity(Intent(this@ScanDeviceActivity, DeviceActivity::class.java).putExtra(DeviceActivity.ADD_DEVICE, "updated"))
                 } else {
-                    val newDevice = DeviceModel(mac = qrResult, name = "Tepav Device", user = userId)
-                    Log.d(TAG, "Child False = ${snapshot.hasChild(qrResult)}")
+                    val newDevice = DeviceModel(mac = qrResult, name = "Tepav Device", user = userId, duration = "30")
                     deviceData.child(qrResult).setValue(newDevice)
+                    Log.d(TAG, "Child False = ${snapshot.hasChild(qrResult)}")
                     finish()
                     startActivity(Intent(this@ScanDeviceActivity, DeviceActivity::class.java).putExtra(DeviceActivity.ADD_DEVICE, "success"))
                 }

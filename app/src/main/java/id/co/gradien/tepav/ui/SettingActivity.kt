@@ -41,11 +41,11 @@ class SettingActivity : AppCompatActivity() {
         val device = database.child("device").child(deviceId)
         device.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                textSSID.text = dataSnapshot.child("wifi").child("ssid").value.toString()
-                val lastConnect = dataSnapshot.child("wifi").child("lastConnect").value.toString()
-                textLastConn.text = getDateString(lastConnect.toLong())
-
-
+                if (dataSnapshot.hasChild("wifi")){
+                    textSSID.text = dataSnapshot.child("wifi").child("ssid").value.toString()
+                    val lastConnect = dataSnapshot.child("wifi").child("lastConnect").value.toString()
+                    textLastConn.text = getDateString(lastConnect.toLong())
+                }
 
                 duration = dataSnapshot.child("duration").value.toString()
                 inputDuration.setText(duration)
