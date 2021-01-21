@@ -23,6 +23,7 @@ import id.co.gradien.tepav.data.AppDatabase
 import id.co.gradien.tepav.data.DeviceDao
 import id.co.gradien.tepav.data.PacketModel
 import kotlinx.android.synthetic.main.activity_home.*
+import java.util.*
 
 
 class HomeActivity : AppCompatActivity() {
@@ -261,7 +262,7 @@ class HomeActivity : AppCompatActivity() {
         recycleviewPacket.adapter = packetAdapter
         recycleviewPacket.layoutManager = layoutManager
         val packetData = FirebaseDatabase.getInstance().getReference("packet")
-        val myPacket = packetData.orderByChild("user").equalTo(userId)
+        val myPacket = packetData.orderByChild("user").equalTo(userId).limitToLast(2)
         myPacket.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 p0.let {
@@ -285,6 +286,7 @@ class HomeActivity : AppCompatActivity() {
                             recycleviewPacket.visibility = GONE
                         }
                     }
+                    packetList.reverse()
                 }
             }
 

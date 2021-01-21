@@ -37,7 +37,7 @@ class PacketActivity : AppCompatActivity() {
 
         val packetData = FirebaseDatabase.getInstance().getReference("packet")
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        val myPacket = packetData.orderByChild("user").equalTo(userId)
+        val myPacket = packetData.orderByChild("user").equalTo(userId).limitToLast(20)
         myPacket.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 contentListPacket.visibility = VISIBLE
@@ -49,6 +49,7 @@ class PacketActivity : AppCompatActivity() {
                         packet!!.id = data.key.toString()
                         packetList.add(packet!!)
                     }
+                    packetList.reverse()
                     //Log.i(TAG, packetList.toString())
                     packetAdapter.setData(packetList)
                     if (packetList.isNullOrEmpty()) {
