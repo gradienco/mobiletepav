@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="id.co.gradien.tepav">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -30,11 +31,15 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".app.MyFirebaseMessagingService">
+        <service android:name=".app.MyFirebaseMessagingService"
+            android:exported="false"
+            android:directBootAware="true"
+            tools:targetApi="n">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"

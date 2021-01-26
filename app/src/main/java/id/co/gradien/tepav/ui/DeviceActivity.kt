@@ -86,7 +86,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
             }
 
             override fun onCancelled(p0: DatabaseError) {
-                Log.e(TAG, "Error fetch data form database")
+                Log.e(TAG, p0.toString())
             }
 
         })
