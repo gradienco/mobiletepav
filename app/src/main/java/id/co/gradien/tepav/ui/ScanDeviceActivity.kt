@@ -96,7 +96,7 @@ class ScanDeviceActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
                     finish()
                     startActivity(Intent(this@ScanDeviceActivity, DeviceActivity::class.java).putExtra(DeviceActivity.ADD_DEVICE, "updated"))
                 } else {
-                    val newDevice = DeviceModel(mac = qrResult, name = "Tepav Device", user = userId, duration = "30")
+                    val newDevice = DeviceModel(mac = qrResult, name = "Tepav Device", user = userId, duration = 30)
                     deviceData.child(qrResult).setValue(newDevice)
                     Log.d(TAG, "Child False = ${snapshot.hasChild(qrResult)}")
                     finish()

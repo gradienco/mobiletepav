@@ -72,7 +72,12 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
                 p0.let {
                     deviceList.clear()
                     for (data in p0.children) {
-                        val device = data.getValue(DeviceModel::class.java)
+                        //val device = data.getValue(DeviceModel::class.java)
+                        val mac = data.child("mac").value.toString()
+                        val name = data.child("name").value.toString()
+                        val user = data.child("user").value.toString()
+                        val duration = data.child("duration").value.toString()
+                        val device = DeviceModel(mac, name, user, duration.toLong())
                         deviceList.add(device!!)
                         Log.d(TAG, "Device : $deviceList")
                     }

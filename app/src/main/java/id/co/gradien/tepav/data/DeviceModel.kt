@@ -8,5 +8,5 @@ data class DeviceModel (
     @PrimaryKey val mac: String = "0",
     val name: String? = null,
     val user: String? = null,
-    val duration: String = "0"
+    val duration: Long = 0
 )

@@ -19,11 +19,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import id.co.gradien.tepav.R
 import id.co.gradien.tepav.adapter.PacketAdapter
-import id.co.gradien.tepav.data.AppDatabase
-import id.co.gradien.tepav.data.DeviceDao
 import id.co.gradien.tepav.data.PacketModel
 import kotlinx.android.synthetic.main.activity_home.*
-import java.util.*
 
 
 class HomeActivity : AppCompatActivity() {

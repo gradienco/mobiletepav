@@ -106,7 +106,7 @@ object Tools : AppCompatActivity() {
      * @param time is the Epoch Time (Long/Int type data)
      */
     @SuppressLint("SimpleDateFormat")
-    private val dateFormat = SimpleDateFormat("dd-MM-yyyy")
+    private val dateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
     fun getDateString(time: Long) : String = dateFormat.format(time)
     fun getDateString(time: Int) : String = dateFormat.format(time)
 }

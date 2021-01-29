@@ -21,7 +21,7 @@ class SettingActivity : AppCompatActivity() {
 
     private val TAG = "SETTING ACTIVITY"
     private lateinit var deviceId: String
-    private lateinit var duration: String
+//    private var duration: String = "0"
     private var changeDuration = 0
 
     @SuppressLint("SimpleDateFormat")
@@ -47,7 +47,17 @@ class SettingActivity : AppCompatActivity() {
                     textLastConn.text = getDateString(lastConnect.toLong())
                 }
 
-                duration = dataSnapshot.child("duration").value.toString()
+                val duration = dataSnapshot.child("duration").value.toString()
+
+                btnAddDuration.setOnClickListener {
+                    changeDuration = duration.toInt() + 1
+                    device.child("duration").setValue(changeDuration)
+                }
+                btnReduceDuration.setOnClickListener {
+                    changeDuration = duration.toInt() - 1
+                    device.child("duration").setValue(changeDuration)
+                }
+
                 inputDuration.setText(duration)
             }
 
@@ -55,16 +65,6 @@ class SettingActivity : AppCompatActivity() {
                 Log.w(TAG, "Failed to read value.", p0.toException())
             }
         })
-
-        btnAddDuration.setOnClickListener {
-            changeDuration = duration.toInt() + 5
-            inputDuration.setText(changeDuration.toString())
-        }
-
-        btnReduceDuration.setOnClickListener {
-            changeDuration = duration.toInt() - 5
-            inputDuration.setText(changeDuration.toString())
-        }
 
         btnLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
