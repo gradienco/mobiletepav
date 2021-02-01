@@ -29,7 +29,6 @@ class ScanDeviceActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_device)
-
         tbAddDevices.setOnClickListener { finish() }
         setScannerView()
     }
@@ -100,7 +99,10 @@ class ScanDeviceActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
                     deviceData.child(qrResult).setValue(newDevice)
                     Log.d(TAG, "Child False = ${snapshot.hasChild(qrResult)}")
                     finish()
-                    startActivity(Intent(this@ScanDeviceActivity, DeviceActivity::class.java).putExtra(DeviceActivity.ADD_DEVICE, "success"))
+                    startActivity(Intent(this@ScanDeviceActivity, DeviceActivity::class.java)
+                        .putExtra(DeviceActivity.ADD_DEVICE, "success").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                 }
             }
 

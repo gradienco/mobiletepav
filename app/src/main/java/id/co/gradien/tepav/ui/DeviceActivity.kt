@@ -97,7 +97,6 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
         })
 
         btnAddDevice.setOnClickListener {
-            finish()
             startActivity(Intent(this@DeviceActivity, ScanDeviceActivity::class.java))
         }
 

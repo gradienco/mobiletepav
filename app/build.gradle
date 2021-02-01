@@ -13,7 +13,7 @@ android {
         applicationId "id.co.gradien.tepav"
         minSdkVersion 18
         targetSdkVersion 29
-        versionCode 3
+        versionCode 4
         versionName "1.1"
 
         multiDexEnabled true
@@ -29,7 +29,17 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        android.applicationVariants.all { variant ->
+            variant.outputs.all { output ->
+//                    outputFileName = "${output.outputFile.name}-${variant.versionName}.apk"
+                def formattedDate = new Date().format('ddMMyy')
+                outputFileName = output.outputFile.name.replace(".apk", "-${variant.versionName}-${formattedDate}.apk")
+
+            }
         }
     }
     compileOptions {

@@ -43,7 +43,10 @@ class HomeActivity : AppCompatActivity() {
             deviceId = it
         }
         if (deviceId == null){
-            startActivity(Intent(this@HomeActivity, DeviceActivity::class.java))
+            startActivity(Intent(this@HomeActivity, DeviceActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         } else {
             val database = FirebaseDatabase.getInstance().reference
             val userId = FirebaseAuth.getInstance().currentUser!!.uid
