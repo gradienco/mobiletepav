@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tbSetting"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="50dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
